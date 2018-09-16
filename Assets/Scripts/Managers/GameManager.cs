@@ -19,7 +19,6 @@
         public Transform KnightPrefab;
 
         private PlayerManager HumanPlayer;
-        private List<MovableUnit> MovableUnits = new List<MovableUnit>();
 
         void Start()
         {
