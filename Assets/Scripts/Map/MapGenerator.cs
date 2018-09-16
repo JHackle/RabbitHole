@@ -1,5 +1,6 @@
 ﻿namespace Hackle.Map
 {
+    using System;
     using Hackle.Util;
     using UnityEngine;
 
@@ -31,6 +32,7 @@
                     Vector3 tilePosition = TileUtil.CoordToPosition(x, y);
                     Transform newTile = Instantiate(tileTransforms[x, y], tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
                     newTile.localScale = Vector3.one * Constants.MapSettings.tileSize;
+                    newTile.Rotate(Vector3.back * GenerateDegree());
                     newTile.parent = mapHolder;
                     newTile.name = "X:" + x + " Y:" + y + " " + newTile.tag;
 
@@ -43,6 +45,12 @@
                     tile.yPos = y;
                 }
             }
+        }
+
+        private int GenerateDegree()
+        {
+            int[] angles = new int[]{ 0, 90, 180, 270, 360 };
+            return angles[UnityEngine.Random.Range(0, 4)];
         }
 
         public Tile GetTileAt(Coord coord)
