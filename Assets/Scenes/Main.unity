@@ -5233,6 +5233,7 @@ MonoBehaviour:
   mapGenerator: {fileID: 1889729111}
   selectionManager: {fileID: 517609793}
   roundNumber: {fileID: 1466791859}
+  nextRoundArrow: {fileID: 1920810567}
   knightPrefab: {fileID: 4694932111807992, guid: 335a5db5883dd1749acd200abfc7a565,
     type: 2}
 --- !u!4 &517609792

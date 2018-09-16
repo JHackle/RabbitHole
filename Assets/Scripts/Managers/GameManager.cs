@@ -3,6 +3,7 @@
     using Hackle.Map;
     using Hackle.Objects;
     using Hackle.Util;
+    using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -12,27 +13,38 @@
         public SelectionManager selectionManager;
 
         public Text roundNumber;
+        public Image nextRoundArrow;
 
         public Transform knightPrefab;
 
-        private Knight knight;
+        private List<MovableUnit> movableUnits = new List<MovableUnit>();
 
         void Start()
         {
             mapGenerator.GenerateMap();
 
             Transform mapHolder = RestoreMapholder();
+
             Transform knightTransform = Instantiate(knightPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
             knightTransform.GetComponent<Knight>().xPos = 5;
             knightTransform.GetComponent<Knight>().yPos = 5;
-            knight = knightTransform.gameObject.GetComponent<Knight>();
+            movableUnits.Add(knightTransform.gameObject.GetComponent<Knight>());
+
+            knightTransform = Instantiate(knightPrefab, TileUtil.CoordToPosition(5, 6), Quaternion.identity).transform;
+            knightTransform.parent = mapHolder;
+            knightTransform.GetComponent<Knight>().xPos = 5;
+            knightTransform.GetComponent<Knight>().yPos = 6;
+            movableUnits.Add(knightTransform.gameObject.GetComponent<Knight>());
         }
 
         public void NextRound()
         {
             selectionManager.Deselect();
-            knight.RestoreSteps();
+            movableUnits.ForEach(u => u.RestoreSteps());
+
+            // reset arrow color
+            nextRoundArrow.color = Color.white;
 
             // increase round number
             roundNumber.text = (int.Parse(roundNumber.text) + 1) + "";
@@ -41,18 +53,23 @@
         public void Click(GameObject go)
         {
             Tile tile = go.GetComponent<Tile>();
+            ISelectable selectable = go.GetComponent<ISelectable>();
             if (tile != null)
             {
                 selectionManager.ClickTile(tile);
-                return;
             }
-
-            ISelectable selectable = go.GetComponent<ISelectable>();
-            if (selectable != null)
+            else if (selectable != null)
             {
                 selectionManager.Select(selectable);
                 selectionManager.UpdateMovableFields();
-                return;
+            }
+
+            // make the arrow green if no units can move any more
+            bool canMove = false;
+            movableUnits.ForEach(u => { canMove |= u.CanMove(); });
+            if (!canMove)
+            {
+                nextRoundArrow.color = Color.green;
             }
         }
 
