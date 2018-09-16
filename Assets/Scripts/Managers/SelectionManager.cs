@@ -118,8 +118,6 @@
                         continue;
                     }
 
-                    Coord size = Constants.MapSettings.mapSize;
-
                     tilesToHighlight.Enqueue(new Coord(x, y));
                 }
             }

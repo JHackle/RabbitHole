@@ -9,45 +9,54 @@
 
     public class GameManager : MonoBehaviour
     {
-        public MapGenerator mapGenerator;
-        public SelectionManager selectionManager;
+        public MapGenerator MapGenerator;
+        public SelectionManager SelectionManager;
 
-        public Text roundNumber;
-        public Image nextRoundArrow;
+        public Text RoundNumber;
+        public Image NextRoundArrow;
 
-        public Transform knightPrefab;
+        public Transform VillageCenterPrefab;
+        public Transform KnightPrefab;
 
-        private List<MovableUnit> movableUnits = new List<MovableUnit>();
+        private PlayerManager HumanPlayer;
+        private List<MovableUnit> MovableUnits = new List<MovableUnit>();
 
         void Start()
         {
-            mapGenerator.GenerateMap();
+            HumanPlayer = new PlayerManager();
+            MapGenerator.GenerateMap();
 
             Transform mapHolder = RestoreMapholder();
 
-            Transform knightTransform = Instantiate(knightPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
+            Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Knight>().xPos = 5;
-            knightTransform.GetComponent<Knight>().yPos = 5;
-            movableUnits.Add(knightTransform.gameObject.GetComponent<Knight>());
+            knightTransform.GetComponent<Unit>().xPos = 5;
+            knightTransform.GetComponent<Unit>().yPos = 5;
+            HumanPlayer.AddUnit(knightTransform.gameObject.GetComponent<Unit>());
 
-            knightTransform = Instantiate(knightPrefab, TileUtil.CoordToPosition(5, 6), Quaternion.identity).transform;
+            knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 6), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Knight>().xPos = 5;
-            knightTransform.GetComponent<Knight>().yPos = 6;
-            movableUnits.Add(knightTransform.gameObject.GetComponent<Knight>());
+            knightTransform.GetComponent<Unit>().xPos = 5;
+            knightTransform.GetComponent<Unit>().yPos = 6;
+            HumanPlayer.AddUnit(knightTransform.gameObject.GetComponent<Unit>());
+
+            Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
+            villageCenter.parent = mapHolder;
+            villageCenter.GetComponent<Unit>().xPos = 5;
+            villageCenter.GetComponent<Unit>().yPos = 5;
+            HumanPlayer.AddUnit(villageCenter.gameObject.GetComponent<Unit>());
         }
 
         public void NextRound()
         {
-            selectionManager.Deselect();
-            movableUnits.ForEach(u => u.RestoreSteps());
+            SelectionManager.Deselect();
+            HumanPlayer.ResetSteps();
 
             // reset arrow color
-            nextRoundArrow.color = Color.white;
+            NextRoundArrow.color = Color.white;
 
             // increase round number
-            roundNumber.text = (int.Parse(roundNumber.text) + 1) + "";
+            RoundNumber.text = (int.Parse(RoundNumber.text) + 1) + "";
         }
 
         public void Click(GameObject go)
@@ -56,20 +65,18 @@
             ISelectable selectable = go.GetComponent<ISelectable>();
             if (tile != null)
             {
-                selectionManager.ClickTile(tile);
+                SelectionManager.ClickTile(tile);
             }
             else if (selectable != null)
             {
-                selectionManager.Select(selectable);
-                selectionManager.UpdateMovableFields();
+                SelectionManager.Select(selectable);
+                SelectionManager.UpdateMovableFields();
             }
 
             // make the arrow green if no units can move any more
-            bool canMove = false;
-            movableUnits.ForEach(u => { canMove |= u.CanMove(); });
-            if (!canMove)
+            if (!HumanPlayer.CanAnyUnitMove())
             {
-                nextRoundArrow.color = Color.green;
+                NextRoundArrow.color = Color.green;
             }
         }
 
