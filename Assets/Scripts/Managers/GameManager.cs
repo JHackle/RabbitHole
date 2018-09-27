@@ -87,20 +87,9 @@
                     BuildMenu.UpdateBuildMenu();
                 }
             }
-            else if (clickedUnit is IMovable)
-            {
-                IMovable movable = clickedUnit as IMovable;
-                SelectionManager.Select(movable);
-                BuildMenu.UpdateBuildMenu();
-                SelectionManager.UpdateMovableFields();
-            }
-            else if (clickedUnit is ISelectable)
+            else 
             {
                 ISelectable selectable = clickedUnit as ISelectable;
-                if (SelectionManager.IsSelectedUnitOfType<IMovable>())
-                {
-                    SelectionManager.UpdateMovableFields();
-                }
                 SelectionManager.Select(selectable);
                 BuildMenu.UpdateBuildMenu();
             }

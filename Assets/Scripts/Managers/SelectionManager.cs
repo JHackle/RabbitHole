@@ -7,6 +7,11 @@
     using System.Collections;
     using UnityEngine;
 
+    /// <summary>
+    /// This class is responsible for:
+    ///  - all unit selection within the game
+    ///  - highlighting tiles which are in range of an selected unit
+    /// </summary>
     public class SelectionManager : MonoBehaviour
     {
         public MapGenerator mapGenerator;
@@ -49,12 +54,13 @@
                 currentSelection = objectToSelect;
                 currentSelection.Select(true);
             }
+            UpdateMovableFields();
         }
 
         /// <summary>
         /// This method updates the movable fields according to the currently selected unit.
         /// </summary>
-        public void UpdateMovableFields()
+        private void UpdateMovableFields()
         {
             DisHighlightTiles();
 
@@ -63,20 +69,6 @@
             {
                 HighlightTiles();
             }
-        }
-
-        // will be moved to GameManager
-        internal bool ClickTile(Tile tile)
-        {
-            bool doesMovement = false;
-            // if a unit was selected previously and we clicked a tile in range (which was highlighted) then start a movement
-            if (IsUnitSelected() && IsSelectedUnitOfType<IMovable>() && tile.IsSelected())
-            {
-                SelectedUnit<IMovable>().Move(tile.Position());
-                doesMovement = true;
-            }
-            Deselect();
-            return doesMovement;
         }
 
         private void DisHighlightTiles()
