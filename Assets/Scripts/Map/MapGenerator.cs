@@ -7,18 +7,18 @@
 
     public class MapGenerator : MonoBehaviour
     {
-        public Transform waterPrefab;
-        public Transform grassPrefab;
-        public Transform desertPrefab;
-        public Transform mountainPrefab;
-        public Transform forestPrefab;
-        public Transform knightPrefab;
+        public Transform WaterPrefab;
+        public Transform GrassPrefab;
+        public Transform DesertPrefab;
+        public Transform MountainPrefab;
+        public Transform ForestPrefab;
+        public Transform KnightPrefab;
 
         private Tile[,] tiles;
 
         public void GenerateMap()
         {
-            TileGenerator tileGenerator = new TileGenerator(waterPrefab, grassPrefab, desertPrefab, mountainPrefab, forestPrefab);
+            TileGenerator tileGenerator = new TileGenerator(WaterPrefab, GrassPrefab, DesertPrefab, MountainPrefab, ForestPrefab);
             Transform[,] tileTransforms = tileGenerator.GenerateTiles();
             tiles = new Tile[tileTransforms.GetLength(0), tileTransforms.GetLength(1)];
 
@@ -26,13 +26,13 @@
             Transform mapHolder = RestoreMapholder();
 
             // create the tiles
-            for (int x = 0; x < Constants.MapSettings.mapSize.x; x++)
+            for (int x = 0; x < Constants.MapSettings.MapSize.X; x++)
             {
-                for (int y = 0; y < Constants.MapSettings.mapSize.y; y++)
+                for (int y = 0; y < Constants.MapSettings.MapSize.Y; y++)
                 {
                     Vector3 tilePosition = TileUtil.CoordToPosition(x, y);
                     Transform newTile = Instantiate(tileTransforms[x, y], tilePosition, Quaternion.Euler(Vector3.right * 90)) as Transform;
-                    newTile.localScale = Vector3.one * Constants.MapSettings.tileSize;
+                    newTile.localScale = Vector3.one * Constants.MapSettings.TileSize;
                     newTile.Rotate(Vector3.back * GenerateDegree());
                     newTile.parent = mapHolder;
                     newTile.name = "X:" + x + " Y:" + y + " " + newTile.tag;
@@ -42,31 +42,31 @@
 
                     // set properties of tile
                     tiles[x, y].Type = GetType(tileTransforms[x, y]);
-                    tiles[x, y].xPos = x;
-                    tiles[x, y].yPos = y;
+                    tiles[x, y].X = x;
+                    tiles[x, y].Y = y;
                 }
             }
         }
 
         private UnitType GetType(Transform tile)
         {
-            if (tile == grassPrefab)
+            if (tile == GrassPrefab)
             {
                 return UnitType.GrassTile;
             }
-            else if (tile == desertPrefab)
+            else if (tile == DesertPrefab)
             {
                 return UnitType.DesertTile;
             }
-            else if (tile == waterPrefab)
+            else if (tile == WaterPrefab)
             {
                 return UnitType.WaterTile;
             }
-            else if (tile == mountainPrefab)
+            else if (tile == MountainPrefab)
             {
                 return UnitType.MountainTile;
             }
-            else if (tile == forestPrefab)
+            else if (tile == ForestPrefab)
             {
                 return UnitType.ForestTile;
             }
@@ -81,7 +81,7 @@
 
         public Tile GetTileAt(Coord coord)
         {
-            return tiles[coord.x, coord.y];
+            return tiles[coord.X, coord.Y];
         }
 
 

@@ -3,18 +3,18 @@
     [System.Serializable]
     public struct Coord
     {
-        public int x;
-        public int y;
+        public int X;
+        public int Y;
 
         public Coord(int x, int y)
         {
-            this.x = x;
-            this.y = y;
+            this.X = x;
+            this.Y = y;
         }
 
         public static bool operator ==(Coord c1, Coord c2f)
         {
-            return c1.x == c2f.x && c1.y == c2f.y;
+            return c1.X == c2f.X && c1.Y == c2f.Y;
         }
 
         public static bool operator !=(Coord c1, Coord c2f)
@@ -27,7 +27,7 @@
             if (obj is Coord)
             {
                 Coord other = (Coord)obj;
-                if ((other.x == x) && (other.y == y))
+                if ((other.X == X) && (other.Y == Y))
                 {
                     return true;
                 }

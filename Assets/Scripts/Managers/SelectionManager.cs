@@ -14,7 +14,7 @@
     /// </summary>
     public class SelectionManager : MonoBehaviour
     {
-        public MapGenerator mapGenerator;
+        public MapGenerator MapGenerator;
 
         private ISelectable currentSelection;
         private Queue tilesToHighlight = new Queue();
@@ -75,7 +75,7 @@
         {
             foreach (Coord tile in tilesToHighlight)
             {
-                mapGenerator.GetTileAt(tile).Select(false);
+                MapGenerator.GetTileAt(tile).Select(false);
             }
             tilesToHighlight.Clear();
         }
@@ -87,15 +87,15 @@
 
             // calculate borders of the map
             int xMin = 0;
-            int xMax = Constants.MapSettings.mapSize.x;
+            int xMax = Constants.MapSettings.MapSize.X;
             int yMin = 0;
-            int yMax = Constants.MapSettings.mapSize.y;
+            int yMax = Constants.MapSettings.MapSize.Y;
 
             // calculate reachable tiles
-            int xStart = knightPos.x - movable.Steps;
-            int xStop = knightPos.x + movable.Steps;
-            int yStart = knightPos.y - movable.Steps;
-            int yStop = knightPos.y + movable.Steps;
+            int xStart = knightPos.X - movable.Steps;
+            int xStop = knightPos.X + movable.Steps;
+            int yStart = knightPos.Y - movable.Steps;
+            int yStop = knightPos.Y + movable.Steps;
 
             // collect all tiles in range
             for (int x = xStart; x <= xStop; x++)
@@ -103,7 +103,7 @@
                 for (int y = yStart; y <= yStop; y++)
                 {
                     // don't highlight the tile of the selected unit
-                    if ((knightPos.x == x) && (knightPos.y == y))
+                    if ((knightPos.X == x) && (knightPos.Y == y))
                     {
                         continue;
                     }
@@ -120,7 +120,7 @@
 
             foreach (Coord tile in tilesToHighlight)
             {
-                mapGenerator.GetTileAt(tile).Select(true);
+                MapGenerator.GetTileAt(tile).Select(true);
             }
         }
 

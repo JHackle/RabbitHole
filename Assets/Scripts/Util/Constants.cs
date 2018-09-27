@@ -17,12 +17,12 @@
             // specify default values to avoid nullpointer exceptions
             // this might be important if the Game scene was started directly
             MapSettings = new MapSettings();
-            MapSettings.mapSize = new Coord(10, 10);
-            MapSettings.grassPercent = 1;
-            MapSettings.forestPercent = 1;
-            MapSettings.desertPercent = 1;
-            MapSettings.waterPercent = 1;
-            MapSettings.mountainPercent = 1;
+            MapSettings.MapSize = new Coord(10, 10);
+            MapSettings.GrassPercent = 1;
+            MapSettings.ForestPercent = 1;
+            MapSettings.DesertPercent = 1;
+            MapSettings.WaterPercent = 1;
+            MapSettings.MountainPercent = 1;
         }
     }
 }

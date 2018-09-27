@@ -28,17 +28,17 @@
         public Transform[,] GenerateTiles()
         {
             // calculate how many tiles of each kind are required
-            int numOfTiles = mapSettings.mapSize.x * mapSettings.mapSize.y;
+            int numOfTiles = mapSettings.MapSize.X * mapSettings.MapSize.Y;
             float sum = mapSettings.CalculateTilesSum();
             if (sum <= 0)
             {
                 throw new InvalidOperationException("There are no tile types specified. Unable to create map");
             }
-            int water = (int)(mapSettings.waterPercent / sum * numOfTiles);
-            int grass = (int)(mapSettings.grassPercent / sum * numOfTiles);
-            int desert = (int)(mapSettings.desertPercent / sum * numOfTiles);
-            int mountain = (int)(mapSettings.mountainPercent / sum * numOfTiles);
-            int forest = (int)(mapSettings.forestPercent / sum * numOfTiles);
+            int water = (int)(mapSettings.WaterPercent / sum * numOfTiles);
+            int grass = (int)(mapSettings.GrassPercent / sum * numOfTiles);
+            int desert = (int)(mapSettings.DesertPercent / sum * numOfTiles);
+            int mountain = (int)(mapSettings.MountainPercent / sum * numOfTiles);
+            int forest = (int)(mapSettings.ForestPercent / sum * numOfTiles);
 
             // fix possible rounding error
             if (numOfTiles != (water + grass + desert + mountain + forest))
@@ -61,11 +61,11 @@
 
         private Transform[,] ConverToArray(List<Transform> transforms)
         {
-            Transform[,] tiles = new Transform[mapSettings.mapSize.x, mapSettings.mapSize.y];
+            Transform[,] tiles = new Transform[mapSettings.MapSize.X, mapSettings.MapSize.Y];
             int listIndex = 0;
-            for (int x = 0; x < mapSettings.mapSize.x; x++)
+            for (int x = 0; x < mapSettings.MapSize.X; x++)
             {
-                for (int y = 0; y < mapSettings.mapSize.y; y++)
+                for (int y = 0; y < mapSettings.MapSize.Y; y++)
                 {
                     if (listIndex > transforms.Count)
                     {

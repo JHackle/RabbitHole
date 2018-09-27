@@ -8,12 +8,12 @@
     /// </summary>
     public class Unit : MonoBehaviour, IUnit
     {
-        public int xPos;
-        public int yPos;
+        public int X;
+        public int Y;
 
         public Coord Position()
         {
-            return new Coord(xPos, yPos);
+            return new Coord(X, Y);
         }
 
         public UnitType Type { get; set; }

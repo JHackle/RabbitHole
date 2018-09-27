@@ -8,12 +8,12 @@
         public void ConstructorTest()
         {
             Coord c = new Coord();
-            Assert.AreEqual(0, c.x);
-            Assert.AreEqual(0, c.y);
+            Assert.AreEqual(0, c.X);
+            Assert.AreEqual(0, c.Y);
 
             Coord c2 = new Coord(3, 5);
-            Assert.AreEqual(3, c2.x);
-            Assert.AreEqual(5, c2.y);
+            Assert.AreEqual(3, c2.X);
+            Assert.AreEqual(5, c2.Y);
         }
 
         [Test]

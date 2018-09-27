@@ -8,8 +8,8 @@
         private static readonly float ZoomSpeedTouch = .05f;
         private static readonly float ZoomSpeedMouse = 20f;
 
-        private static float[] BoundsX = new float[] { -10f, Hackle.Util.Constants.MapSettings.mapSize.x * Hackle.Util.Constants.MapSettings.tileSize + 10f };
-        private static float[] BoundsZ = new float[] { -10f, Hackle.Util.Constants.MapSettings.mapSize.y * Hackle.Util.Constants.MapSettings.tileSize + 10f };
+        private static float[] BoundsX = new float[] { -10f, Hackle.Util.Constants.MapSettings.MapSize.X * Hackle.Util.Constants.MapSettings.TileSize + 10f };
+        private static float[] BoundsZ = new float[] { -10f, Hackle.Util.Constants.MapSettings.MapSize.Y * Hackle.Util.Constants.MapSettings.TileSize + 10f };
         private static readonly float[] ZoomBounds = new float[] { 10f, 85f };
 
         private Camera cam;

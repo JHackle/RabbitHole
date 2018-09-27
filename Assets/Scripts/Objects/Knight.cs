@@ -7,10 +7,5 @@
             Steps = 2;
             Speed = 4f;
         }
-
-        private new void Update()
-        {
-            base.Update();
-        }
     }
 }

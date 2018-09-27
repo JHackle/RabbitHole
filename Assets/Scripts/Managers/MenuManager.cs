@@ -61,7 +61,7 @@
             // save the world size
             int mapSize = GameObject.Find("WorldSizeCombo").GetComponent<Dropdown>().value;
             mapSize = (mapSize + 1) * 10;
-            Constants.MapSettings.mapSize = new Coord(mapSize, mapSize);
+            Constants.MapSettings.MapSize = new Coord(mapSize, mapSize);
 
             // save the player color
             var playerColorDropDown = GameObject.Find("ColorCombo").GetComponent<Dropdown>();

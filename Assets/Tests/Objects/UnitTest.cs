@@ -11,8 +11,8 @@
         {
             Unit u = new Unit();
             u.Type = UnitType.Tile;
-            u.xPos = 3;
-            u.yPos = 4;
+            u.X = 3;
+            u.Y = 4;
             Coord c = u.Position();
 
             Assert.AreEqual(new Coord(3, 4), c);

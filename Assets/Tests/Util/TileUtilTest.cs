@@ -14,16 +14,16 @@
         public void SetUp()
         {
             mapSettings = Constants.MapSettings;
-            tileSize = mapSettings.tileSize;
-            mapSize = mapSettings.mapSize;
+            tileSize = mapSettings.TileSize;
+            mapSize = mapSettings.MapSize;
         }
 
         [Test]
         public void CoordToPositionTest()
         {
-            for (int x = 0; x < mapSize.x; x++)
+            for (int x = 0; x < mapSize.X; x++)
             {
-                for (int y = 0; y < mapSize.y; y++)
+                for (int y = 0; y < mapSize.Y; y++)
                 {
                     ValidateCoordToPosition(x, y);
                 }
@@ -47,15 +47,15 @@
         [Test]
         public void CoordToPositionIllegal3()
         {
-            ValidateInt(mapSize.x + 1, 0);
-            ValidateCoord(mapSize.x + 1, 0);
+            ValidateInt(mapSize.X + 1, 0);
+            ValidateCoord(mapSize.X + 1, 0);
         }
 
         [Test]
         public void CoordToPositionIllegal4()
         {
-            ValidateInt(0, mapSize.y + 1);
-            ValidateCoord(0, mapSize.y + 1);
+            ValidateInt(0, mapSize.Y + 1);
+            ValidateCoord(0, mapSize.Y + 1);
         }
 
         [Test]
@@ -105,8 +105,8 @@
 
         private void ValidateCoordToPosition(int x, int y)
         {
-            float expectedX = -mapSize.x / 2f + 0.5f * tileSize + x * tileSize;
-            float expectedY = -mapSize.y / 2f + 0.5f * tileSize + y * tileSize;
+            float expectedX = -mapSize.X / 2f + 0.5f * tileSize + x * tileSize;
+            float expectedY = -mapSize.Y / 2f + 0.5f * tileSize + y * tileSize;
 
             Vector3 v1 = TileUtil.CoordToPosition(new Coord(x, y));
             Vector3 v2 = TileUtil.CoordToPosition(x, y);

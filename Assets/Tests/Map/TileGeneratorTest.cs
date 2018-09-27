@@ -251,13 +251,13 @@
         private static MapSettings CreateSettings(int x, int y, float water, float grass, float desert, float mountain, float forest)
         {
             MapSettings settings = new MapSettings();
-            settings.mapSize.x = x;
-            settings.mapSize.y = y;
-            settings.waterPercent = water;
-            settings.grassPercent = grass;
-            settings.desertPercent = desert;
-            settings.mountainPercent = mountain;
-            settings.forestPercent = forest;
+            settings.MapSize.X = x;
+            settings.MapSize.Y = y;
+            settings.WaterPercent = water;
+            settings.GrassPercent = grass;
+            settings.DesertPercent = desert;
+            settings.MountainPercent = mountain;
+            settings.ForestPercent = forest;
             return settings;
         }
     }

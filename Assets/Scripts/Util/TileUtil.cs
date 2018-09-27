@@ -7,28 +7,28 @@
     {
         public static Vector3 CoordToPosition(Coord coord)
         {
-            return CoordToPosition(coord.x, coord.y);
+            return CoordToPosition(coord.X, coord.Y);
         }
 
         public static Vector3 CoordToPosition(int x, int y)
         {
             MapSettings mapSettings = Constants.MapSettings;
-            int tileSize = mapSettings.tileSize;
-            Coord mapSize = mapSettings.mapSize;
+            int tileSize = mapSettings.TileSize;
+            Coord mapSize = mapSettings.MapSize;
 
-            if ((x < 0) || (x >= mapSize.x) || (y < 0) || (y > mapSize.y))
+            if ((x < 0) || (x >= mapSize.X) || (y < 0) || (y > mapSize.Y))
             {
                 throw new CoordinateTranslationException("Coordinates are not in range: " + x + ":" + y);
             }
 
-            return new Vector3(-mapSize.x / 2f + 0.5f * tileSize + x * tileSize, 0, -mapSize.y / 2f + 0.5f * tileSize + y * tileSize);
+            return new Vector3(-mapSize.X / 2f + 0.5f * tileSize + x * tileSize, 0, -mapSize.Y / 2f + 0.5f * tileSize + y * tileSize);
         }
 
         public static Coord RandomPosition()
         {
-            Coord size = Constants.MapSettings.mapSize;
-            int randX = Random.Range(0, size.x);
-            int randY = Random.Range(0, size.y);
+            Coord size = Constants.MapSettings.MapSize;
+            int randX = Random.Range(0, size.X);
+            int randY = Random.Range(0, size.Y);
             return new Coord(randX, randY);
         }
     }

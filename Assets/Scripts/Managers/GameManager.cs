@@ -11,7 +11,7 @@
     {
         public MapGenerator MapGenerator;
         public SelectionManager SelectionManager;
-        public BuildMenuManager BuildMenu;
+        public BuildMenuManager BuildMenuManager;
 
         public Text RoundNumber;
         public Image NextRoundArrow;
@@ -30,24 +30,24 @@
 
             Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().xPos = 5;
-            knightTransform.GetComponent<Unit>().yPos = 5;
+            knightTransform.GetComponent<Unit>().X = 5;
+            knightTransform.GetComponent<Unit>().Y = 5;
             Knight knight1 = knightTransform.gameObject.GetComponent<Knight>();
             knight1.Type = UnitType.Knight;
             HumanPlayer.AddUnit(knight1);
 
             knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 6), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().xPos = 5;
-            knightTransform.GetComponent<Unit>().yPos = 6;
+            knightTransform.GetComponent<Unit>().X = 5;
+            knightTransform.GetComponent<Unit>().Y = 6;
             Knight knight2 = knightTransform.gameObject.GetComponent<Knight>();
             knight2.Type = UnitType.Knight;
             HumanPlayer.AddUnit(knight2);
 
             Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
-            villageCenter.GetComponent<Unit>().xPos = 5;
-            villageCenter.GetComponent<Unit>().yPos = 5;
+            villageCenter.GetComponent<Unit>().X = 5;
+            villageCenter.GetComponent<Unit>().Y = 5;
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
             center.Type = UnitType.VillageCenter;
             HumanPlayer.AddUnit(center);
@@ -79,19 +79,19 @@
                         SelectionManager.SelectedUnit<IMovable>().Move(tile.Position());
                     }
                     SelectionManager.Deselect();
-                    BuildMenu.UpdateBuildMenu();
+                    BuildMenuManager.UpdateBuildMenu();
                 }
                 else
                 {
                     SelectionManager.Select(clickedUnit as ISelectable);
-                    BuildMenu.UpdateBuildMenu();
+                    BuildMenuManager.UpdateBuildMenu();
                 }
             }
             else 
             {
                 ISelectable selectable = clickedUnit as ISelectable;
                 SelectionManager.Select(selectable);
-                BuildMenu.UpdateBuildMenu();
+                BuildMenuManager.UpdateBuildMenu();
             }
 
             // make the arrow green if no units can move any more

@@ -30,11 +30,11 @@
             forestPrefab.tag = "ForestTile";
 
             mapGenerator = new GameObject().AddComponent<MapGenerator>();
-            mapGenerator.waterPrefab = waterPrefab.transform;
-            mapGenerator.grassPrefab = grassPrefab.transform;
-            mapGenerator.desertPrefab = desertPrefab.transform;
-            mapGenerator.mountainPrefab = mountainPrefab.transform;
-            mapGenerator.forestPrefab = forestPrefab.transform;
+            mapGenerator.WaterPrefab = waterPrefab.transform;
+            mapGenerator.GrassPrefab = grassPrefab.transform;
+            mapGenerator.DesertPrefab = desertPrefab.transform;
+            mapGenerator.MountainPrefab = mountainPrefab.transform;
+            mapGenerator.ForestPrefab = forestPrefab.transform;
         }
 
 
@@ -113,12 +113,12 @@
         private static MapSettings CreateSettings(int x, int y, float water, float grass, float desert, float mountain, float forest)
         {
             MapSettings settings = new MapSettings();
-            settings.mapSize = new Coord(x, y);
-            settings.waterPercent = water;
-            settings.grassPercent = grass;
-            settings.desertPercent = desert;
-            settings.mountainPercent = mountain;
-            settings.forestPercent = forest;
+            settings.MapSize = new Coord(x, y);
+            settings.WaterPercent = water;
+            settings.GrassPercent = grass;
+            settings.DesertPercent = desert;
+            settings.MountainPercent = mountain;
+            settings.ForestPercent = forest;
             return settings;
         }
     }
