@@ -9,7 +9,8 @@
         [Test]
         public void PositionTest()
         {
-            Unit u = new Unit(UnitType.Tile);
+            Unit u = new Unit();
+            u.Type = UnitType.Tile;
             u.xPos = 3;
             u.yPos = 4;
             Coord c = u.Position();

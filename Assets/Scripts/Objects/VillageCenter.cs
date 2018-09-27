@@ -4,8 +4,5 @@
 
     public class VillageCenter : SelectableUnit
     {
-        public VillageCenter() : base(UnitType.VillageCenter)
-        {
-        }
     }
 }

@@ -9,10 +9,6 @@
     /// </summary>
     public class SelectableUnit : Unit, ISelectable
     {
-        public SelectableUnit(UnitType type) : base(type)
-        {
-        }
-
         public void Select(bool selected)
         {
             foreach (Transform t in gameObject.transform)

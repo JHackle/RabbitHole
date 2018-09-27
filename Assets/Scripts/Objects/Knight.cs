@@ -2,7 +2,7 @@
 {
     public class Knight : MovableUnit
     {
-        public Knight() : base(UnitType.Knight)
+        public Knight()
         {
             Steps = 2;
             Speed = 4f;

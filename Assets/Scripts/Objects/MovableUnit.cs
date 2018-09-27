@@ -19,10 +19,6 @@
         private Coord targetPosition;
         private bool canMove = true;
 
-        public MovableUnit(UnitType type) : base(type)
-        {
-        }
-
         public void Move(Coord coord)
         {
             if (move)
