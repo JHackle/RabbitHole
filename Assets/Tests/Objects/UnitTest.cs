@@ -1,6 +1,7 @@
 ﻿namespace Hackle.Objects
 {
     using Hackle.Map;
+    using Hackle.Objects;
     using NUnit.Framework;
 
     public class UnitTest
@@ -8,7 +9,7 @@
         [Test]
         public void PositionTest()
         {
-            Unit u = new Unit();
+            Unit u = new Unit(UnitType.Tile);
             u.xPos = 3;
             u.yPos = 4;
             Coord c = u.Position();

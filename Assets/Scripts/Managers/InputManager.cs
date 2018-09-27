@@ -5,8 +5,7 @@
 
     public class InputManager : MonoBehaviour
     {
-        public GameManager gameManager;
-        public GameObject hud;
+        public GameManager GameManager;
 
         void Update()
         {
@@ -26,7 +25,7 @@
 
                     // decide which object was clicked
                     GameObject go = hitInfo.collider.transform.parent.gameObject;
-                    gameManager.Click(go);
+                    GameManager.Click(go);
                 }
             }
 
@@ -34,27 +33,6 @@
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 SceneManager.LoadScene("Menu");
-            }
-        }
-
-        public void NextRound()
-        {
-            gameManager.NextRound();
-        }
-
-        public void ShowBuildMenu()
-        {
-            GameObject buildMenu = hud.transform.Find("BuildMenu").gameObject;
-            GameObject nextRound = hud.transform.Find("NextRound").gameObject;
-            if (buildMenu.activeInHierarchy)
-            {
-                buildMenu.SetActive(false);
-                nextRound.SetActive(true);
-            }
-            else
-            {
-                buildMenu.SetActive(true);
-                nextRound.SetActive(false);
             }
         }
     }

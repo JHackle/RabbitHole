@@ -1,6 +1,7 @@
 ﻿namespace Hackle.Map
 {
     using System;
+    using Hackle.Objects;
     using Hackle.Util;
     using UnityEngine;
 
@@ -39,12 +40,37 @@
                     // store created tile for later access
                     tiles[x, y] = newTile.GetComponent<Tile>();
 
-                    // set the position of the tile
-                    Tile tile = newTile.GetComponent<Tile>();
-                    tile.xPos = x;
-                    tile.yPos = y;
+                    // set properties of tile
+                    tiles[x, y].Type = GetType(tileTransforms[x, y]);
+                    tiles[x, y].xPos = x;
+                    tiles[x, y].yPos = y;
                 }
             }
+        }
+
+        private UnitType GetType(Transform tile)
+        {
+            if (tile == grassPrefab)
+            {
+                return UnitType.GrassTile;
+            }
+            else if (tile == desertPrefab)
+            {
+                return UnitType.DesertTile;
+            }
+            else if (tile == waterPrefab)
+            {
+                return UnitType.WaterTile;
+            }
+            else if (tile == mountainPrefab)
+            {
+                return UnitType.MountainTile;
+            }
+            else if (tile == forestPrefab)
+            {
+                return UnitType.ForestTile;
+            }
+            throw new InvalidOperationException();
         }
 
         private int GenerateDegree()

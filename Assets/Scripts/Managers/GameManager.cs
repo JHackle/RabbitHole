@@ -11,6 +11,7 @@
     {
         public MapGenerator MapGenerator;
         public SelectionManager SelectionManager;
+        public BuildMenuManager BuildMenu;
 
         public Text RoundNumber;
         public Image NextRoundArrow;
@@ -31,19 +32,25 @@
             knightTransform.parent = mapHolder;
             knightTransform.GetComponent<Unit>().xPos = 5;
             knightTransform.GetComponent<Unit>().yPos = 5;
-            HumanPlayer.AddUnit(knightTransform.gameObject.GetComponent<Unit>());
+            Knight knight1 = knightTransform.gameObject.GetComponent<Knight>();
+            knight1.Type = UnitType.Knight;
+            HumanPlayer.AddUnit(knight1);
 
             knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 6), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
             knightTransform.GetComponent<Unit>().xPos = 5;
             knightTransform.GetComponent<Unit>().yPos = 6;
-            HumanPlayer.AddUnit(knightTransform.gameObject.GetComponent<Unit>());
+            Knight knight2 = knightTransform.gameObject.GetComponent<Knight>();
+            knight2.Type = UnitType.Knight;
+            HumanPlayer.AddUnit(knight2);
 
             Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
             villageCenter.GetComponent<Unit>().xPos = 5;
             villageCenter.GetComponent<Unit>().yPos = 5;
-            HumanPlayer.AddUnit(villageCenter.gameObject.GetComponent<Unit>());
+            VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
+            center.Type = UnitType.VillageCenter;
+            HumanPlayer.AddUnit(center);
         }
 
         public void NextRound()
@@ -60,16 +67,42 @@
 
         public void Click(GameObject go)
         {
-            Tile tile = go.GetComponent<Tile>();
-            ISelectable selectable = go.GetComponent<ISelectable>();
-            if (tile != null)
+            IUnit clickedUnit = go.GetComponent<IUnit>();
+
+            if (clickedUnit is Tile)
             {
-                SelectionManager.ClickTile(tile);
+                Tile tile = clickedUnit as Tile;
+                if (SelectionManager.IsSelectedUnitOfType<IMovable>())
+                {
+                    if (tile.IsSelected())
+                    {
+                        SelectionManager.SelectedUnit<IMovable>().Move(tile.Position());
+                    }
+                    SelectionManager.Deselect();
+                    BuildMenu.UpdateBuildMenu();
+                }
+                else
+                {
+                    SelectionManager.Select(clickedUnit as ISelectable);
+                    BuildMenu.UpdateBuildMenu();
+                }
             }
-            else if (selectable != null)
+            else if (clickedUnit is IMovable)
             {
-                SelectionManager.Select(selectable);
+                IMovable movable = clickedUnit as IMovable;
+                SelectionManager.Select(movable);
+                BuildMenu.UpdateBuildMenu();
                 SelectionManager.UpdateMovableFields();
+            }
+            else if (clickedUnit is ISelectable)
+            {
+                ISelectable selectable = clickedUnit as ISelectable;
+                if (SelectionManager.IsSelectedUnitOfType<IMovable>())
+                {
+                    SelectionManager.UpdateMovableFields();
+                }
+                SelectionManager.Select(selectable);
+                BuildMenu.UpdateBuildMenu();
             }
 
             // make the arrow green if no units can move any more
@@ -92,3 +125,62 @@
         }
     }
 }
+
+// click on tile
+    // unit was selected before
+        // clicked tile was in range of selected unit
+            //- move selected unit
+            //- remove selection
+            //- update tile highlight
+            //- update build menu
+        // clicked tile was not in range of selected unit
+            //- remove selection
+            //- update tile highlight
+            //- update build menu
+    // tile was selected before
+        //- select unit
+        //- update build menu
+    // building was selected before
+        //- select unit
+        //- update build menu
+    // nothing was selected before
+        //- select unit
+        //- update build menu
+// click on unit
+    // unit was selected before
+        //- select unit
+        //- update build menu
+        //- update tile highlight
+    // tile was selected before
+        //- select unit
+        //- update build menu
+        //- update tile highlight
+    // building was selected before
+        //- select unit
+        //- update build menu
+        //- update tile highlight
+// click on building
+    // unit was selected before
+        //- select unit
+        //- update build menu
+        //- update tile highlight
+    // tile was selected before
+        //- select unit
+        //- update build menu
+    // building was selected before
+        //- select unit
+        //- update build menu
+
+
+
+
+//GameManager
+//- move selected unit
+
+//SelectionMananger
+//- select unit
+//- remove selection
+//- update tile highlight
+
+//BuildMenuMananger
+//- update build menu

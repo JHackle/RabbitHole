@@ -65,14 +65,18 @@
             }
         }
 
-        internal void ClickTile(Tile tile)
+        // will be moved to GameManager
+        internal bool ClickTile(Tile tile)
         {
+            bool doesMovement = false;
             // if a unit was selected previously and we clicked a tile in range (which was highlighted) then start a movement
             if (IsUnitSelected() && IsSelectedUnitOfType<IMovable>() && tile.IsSelected())
             {
                 SelectedUnit<IMovable>().Move(tile.Position());
+                doesMovement = true;
             }
             Deselect();
+            return doesMovement;
         }
 
         private void DisHighlightTiles()

@@ -10,10 +10,18 @@
     {
         public int xPos;
         public int yPos;
+        private UnitType unitType;
+
+        public Unit(UnitType type)
+        {
+            unitType = type;
+        }
 
         public Coord Position()
         {
             return new Coord(xPos, yPos);
         }
+
+        public UnitType Type { get; set; }
     }
 }

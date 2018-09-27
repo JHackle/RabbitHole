@@ -4,5 +4,8 @@
 
     public class Tile : SelectableUnit
     {
+        public Tile() : base(UnitType.Tile)
+        {
+        }
     }
 }
