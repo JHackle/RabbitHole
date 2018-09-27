@@ -40,7 +40,7 @@
         /// <returns></returns>
         private List<IUnit> MovablesWithSteps()
         {
-            return Units.Where(u => u is IMovable).Where(u => (u as IMovable).CanMove()).ToList();
+            return Movables().Where(u => (u as IMovable).CanMove()).ToList();
         }
     }
 }
