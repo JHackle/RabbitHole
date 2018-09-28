@@ -19,41 +19,46 @@
         public Transform VillageCenterPrefab;
         public Transform KnightPrefab;
 
-        private PlayerManager HumanPlayer;
+        private PlayerManager humanPlayer;
+        private Transform mapHolder;
 
         void Start()
         {
-            HumanPlayer = new PlayerManager();
+            mapHolder = RestoreMapholder();
+            humanPlayer = new PlayerManager();
             MapGenerator.GenerateMap();
 
-            Transform mapHolder = RestoreMapholder();
-
+            Coord knight1Pos = new Coord(5, 5);
             Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().Position = new Coord(5, 5);
+            knightTransform.GetComponent<Unit>().Position = knight1Pos;
             Knight knight1 = knightTransform.gameObject.GetComponent<Knight>();
             knight1.Type = UnitType.Knight;
-            HumanPlayer.AddUnit(knight1);
+            humanPlayer.AddUnit(knight1);
+            MapGenerator.GetTileAt(knight1Pos).SetUnit(knight1);
 
+            Coord knight2Pos = new Coord(5, 6);
             knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 6), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().Position = new Coord(5, 6);
+            knightTransform.GetComponent<Unit>().Position = knight2Pos;
             Knight knight2 = knightTransform.gameObject.GetComponent<Knight>();
             knight2.Type = UnitType.Knight;
-            HumanPlayer.AddUnit(knight2);
+            humanPlayer.AddUnit(knight2);
+            MapGenerator.GetTileAt(knight2Pos).SetUnit(knight2);
 
             Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
-            villageCenter.GetComponent<Unit>().Position = new Coord(5, 5);
+            villageCenter.GetComponent<Unit>().Position = knight1Pos;
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
             center.Type = UnitType.VillageCenter;
-            HumanPlayer.AddUnit(center);
+            humanPlayer.AddUnit(center);
+            MapGenerator.GetTileAt(knight1Pos).SetBuilding(center);
         }
 
         public void NextRound()
         {
             SelectionManager.Deselect();
-            HumanPlayer.ResetSteps();
+            humanPlayer.ResetSteps();
 
             // reset arrow color
             NextRoundArrow.color = Color.white;
@@ -78,7 +83,7 @@
             }
 
             // make the arrow green if no units can move any more
-            if (!HumanPlayer.CanAnyUnitMove())
+            if (!humanPlayer.CanAnyUnitMove())
             {
                 NextRoundArrow.color = Color.green;
             }
