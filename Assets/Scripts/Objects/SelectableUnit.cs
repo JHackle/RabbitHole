@@ -7,7 +7,7 @@
     /// Base class for all units which can be selected.
     /// Therefore it is assumed that the GameObject contains an element which is tagged with <code>Highlighter</code>.
     /// </summary>
-    public class SelectableUnit : Unit, ISelectable
+    public class SelectableUnit : Object, ISelectable
     {
         public void Select(bool selected)
         {

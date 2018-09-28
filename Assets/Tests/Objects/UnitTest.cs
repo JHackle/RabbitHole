@@ -4,12 +4,12 @@
     using Hackle.Objects;
     using NUnit.Framework;
 
-    public class UnitTest
+    public class ObjectTest
     {
         [Test]
         public void PositionTest()
         {
-            Unit u = new Unit();
+            Object u = new Object();
             u.Type = UnitType.Tile;
             u.Position = new Coord(3, 4);
             Coord c = u.Position;

@@ -2,7 +2,7 @@
 {
     using Hackle.Map;
 
-    public interface IUnit
+    public interface IObject
     {
         /// <summary>
         /// The type of the unit.

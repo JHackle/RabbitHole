@@ -48,7 +48,7 @@
         {
             Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
-            villageCenter.GetComponent<Unit>().Position = position;
+            villageCenter.GetComponent<Objects.Object>().Position = position;
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
             center.Type = UnitType.VillageCenter;
             return center;
@@ -58,7 +58,7 @@
         {
             Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().Position = position;
+            knightTransform.GetComponent<Objects.Object>().Position = position;
             Knight knight = knightTransform.gameObject.GetComponent<Knight>();
             knight.Type = UnitType.Knight;
             return knight;
@@ -78,7 +78,7 @@
 
         public void Click(GameObject go)
         {
-            IUnit clickedUnit = go.GetComponent<IUnit>();
+            IObject clickedUnit = go.GetComponent<IObject>();
 
             if (clickedUnit is Tile)
             {

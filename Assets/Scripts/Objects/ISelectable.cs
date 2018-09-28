@@ -1,6 +1,6 @@
 ﻿namespace Hackle.Objects
 {
-    public interface ISelectable : IUnit
+    public interface ISelectable : IObject
     {
         /// <summary>
         /// Selects or deselects the unit by enabling or disabling the <code>Highlighter</code> component of this GameObject.

@@ -4,9 +4,9 @@
     using UnityEngine;
 
     /// <summary>
-    /// Base class for alle objects in the game. Each Unit must have a tile based x/y position.
+    /// Base class for all objects in the game. Each object must have a tile based x/y position.
     /// </summary>
-    public class Unit : MonoBehaviour, IUnit
+    public class Object : MonoBehaviour, IObject
     {
         public Coord Position { get; set; }
 

@@ -8,9 +8,9 @@
 
     class PlayerManager
     {
-        private List<IUnit> Units = new List<IUnit>();
+        private List<IObject> Units = new List<IObject>();
 
-        public void AddUnit(IUnit unit)
+        public void AddUnit(IObject unit)
         {
             Units.Add(unit);
         }
@@ -29,7 +29,7 @@
         /// Returns a list of all movable objects of this player.
         /// </summary>
         /// <returns></returns>
-        private List<IUnit> Movables()
+        private List<IObject> Movables()
         {
             return Units.Where(u => u is IMovable).ToList();
         }
@@ -38,7 +38,7 @@
         /// Returns a list of all movable objects which stil can move.
         /// </summary>
         /// <returns></returns>
-        private List<IUnit> MovablesWithSteps()
+        private List<IObject> MovablesWithSteps()
         {
             return Movables().Where(u => (u as IMovable).CanMove()).ToList();
         }
