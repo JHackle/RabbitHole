@@ -5,22 +5,21 @@
     using Hackle.Util;
     using UnityEngine;
 
-    class ObjectFactory : MonoBehaviour
+    public class ObjectFactory : MonoBehaviour
     {
-        private Transform villageCenterPrefab;
-        private Transform knightPrefab;
+        public Transform VillageCenterPrefab;
+        public Transform KnightPrefab;
+
         private Transform mapHolder;
 
-        public void Init(Transform villageCenterPrefab, Transform knightPrefab)
+        private void Start()
         {
-            this.villageCenterPrefab = villageCenterPrefab;
-            this.knightPrefab = knightPrefab;
             mapHolder = RestoreMapholder();
         }
 
         public VillageCenter CreateVillageCenter(Coord position)
         {
-            Transform villageCenter = Instantiate(villageCenterPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
+            Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
             villageCenter.GetComponent<Objects.Object>().Position = position;
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
@@ -30,7 +29,7 @@
 
         public Knight CreateKnight(Coord position)
         {
-            Transform knightTransform = Instantiate(knightPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
+            Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
             knightTransform.GetComponent<Objects.Object>().Position = position;
             Knight knight = knightTransform.gameObject.GetComponent<Knight>();

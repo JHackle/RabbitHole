@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1027977995370488}
+  m_IsPrefabParent: 1
+--- !u!1 &1027977995370488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4445651842899796}
+  - component: {fileID: 114209358418177876}
+  - component: {fileID: 114778997444723934}
+  - component: {fileID: 114846099827351842}
+  - component: {fileID: 114341365909872592}
+  - component: {fileID: 114958997776454188}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4445651842899796
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027977995370488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114209358418177876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027977995370488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3184dbfe630e5b439ddfc6ae4e1209c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapGenerator: {fileID: 0}
+  SelectionManager: {fileID: 114778997444723934}
+  HudManager: {fileID: 114341365909872592}
+  ObjectFactory: {fileID: 114958997776454188}
+--- !u!114 &114341365909872592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027977995370488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87dc3914013956d4288f03b8d886ae9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectionManager: {fileID: 114778997444723934}
+  MenuButton: {fileID: 0}
+  Capacity: {fileID: 0}
+  Wood: {fileID: 0}
+  Gold: {fileID: 0}
+  Food: {fileID: 0}
+  Round: {fileID: 0}
+  NextRoundButton: {fileID: 0}
+  BuildMenu: {fileID: 0}
+--- !u!114 &114778997444723934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027977995370488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945b1309c7cfe224b927054dc4a2a00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapGenerator: {fileID: 0}
+--- !u!114 &114846099827351842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027977995370488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5634b06b55c4d2e48ad57e62ab5eac06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameManager: {fileID: 114209358418177876}
+--- !u!114 &114958997776454188
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027977995370488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 856783efa9de78e4ca5c0de844471b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VillageCenterPrefab: {fileID: 4465161517143852, guid: f5acdf7769d3da34eb5734bd3e119f34,
+    type: 2}
+  KnightPrefab: {fileID: 4694932111807992, guid: 335a5db5883dd1749acd200abfc7a565,
+    type: 2}

@@ -3,45 +3,33 @@
     using Hackle.Factories;
     using Hackle.Map;
     using Hackle.Objects;
-    using Hackle.Util;
-    using System;
-    using System.Collections.Generic;
     using UnityEngine;
-    using UnityEngine.UI;
 
     public class GameManager : MonoBehaviour
     {
         public MapGenerator MapGenerator;
         public SelectionManager SelectionManager;
-        public BuildMenuManager BuildMenuManager;
-
-        public Text RoundNumber;
-        public Image NextRoundArrow;
-
-        public Transform VillageCenterPrefab;
-        public Transform KnightPrefab;
+        public HudManager HudManager;
+        public ObjectFactory ObjectFactory;
 
         private PlayerManager humanPlayer;
-        private ObjectFactory factory;
 
         void Start()
         {
-            factory = gameObject.AddComponent<ObjectFactory>();
-            factory.Init(VillageCenterPrefab, KnightPrefab);
             humanPlayer = new PlayerManager();
             MapGenerator.GenerateMap();
 
             Coord knight1Pos = new Coord(5, 5);
-            Knight knight1 = factory.CreateKnight(knight1Pos);
+            Knight knight1 = ObjectFactory.CreateKnight(knight1Pos);
             humanPlayer.AddUnit(knight1);
             MapGenerator.GetTileAt(knight1Pos).SetUnit(knight1);
 
             Coord knight2Pos = new Coord(5, 6);
-            Knight knight2 = factory.CreateKnight(knight2Pos);
+            Knight knight2 = ObjectFactory.CreateKnight(knight2Pos);
             humanPlayer.AddUnit(knight2);
             MapGenerator.GetTileAt(knight2Pos).SetUnit(knight2);
 
-            VillageCenter center = factory.CreateVillageCenter(knight1Pos);
+            VillageCenter center = ObjectFactory.CreateVillageCenter(knight1Pos);
             humanPlayer.AddUnit(center);
             MapGenerator.GetTileAt(knight1Pos).SetBuilding(center);
         }
@@ -50,12 +38,7 @@
         {
             SelectionManager.Deselect();
             humanPlayer.ResetSteps();
-
-            // reset arrow color
-            NextRoundArrow.color = Color.white;
-
-            // increase round number
-            RoundNumber.text = (int.Parse(RoundNumber.text) + 1) + "";
+            HudManager.GoToNextRound();
         }
 
         public void Click(GameObject go)
@@ -70,13 +53,13 @@
             {
                 // if the clicked object is not a tile, just select the clicked object and update the build menu
                 SelectionManager.Select(clickedUnit as ISelectable);
-                BuildMenuManager.UpdateBuildMenu();
+                HudManager.UpdateBuildMenu();
             }
 
-            // make the arrow green if no units can move any more
+            // indicate that no unit can move any more
             if (!humanPlayer.CanAnyUnitMove())
             {
-                NextRoundArrow.color = Color.green;
+                HudManager.ShowRoundFinish();
             }
         }
 
@@ -93,13 +76,13 @@
                 }
                 // remove the selection and hide build menu
                 SelectionManager.Deselect();
-                BuildMenuManager.UpdateBuildMenu();
+                HudManager.UpdateBuildMenu();
             }
             else
             {
                 // in any other case the clicked tile should be selected and the build menu updated
                 SelectionManager.Select(tile as ISelectable);
-                BuildMenuManager.UpdateBuildMenu();
+                HudManager.UpdateBuildMenu();
             }
         }
     }

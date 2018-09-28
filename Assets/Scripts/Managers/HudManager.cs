@@ -5,14 +5,29 @@
     using UnityEngine.UI;
 
     /// <summary>
-    /// This class is responsible for creating and showing the build menu.
+    /// This class is responsible for creating and showing the HUD.
     /// </summary>
-    public class BuildMenuManager : MonoBehaviour
+    public class HudManager : MonoBehaviour
     {
-        public Transform BuildMenu;
-        public Transform Hud;
         public SelectionManager SelectionManager;
 
+        public Transform MenuButton;
+        public Transform Capacity;
+        public Transform Wood;
+        public Transform Gold;
+        public Transform Food;
+        public Transform Round;
+        public Transform NextRoundButton;
+        public Transform BuildMenu;
+
+        private Text nextRoundNumber;
+        private Image nextRoundArrow;
+
+        private void Start()
+        {
+            nextRoundNumber = Round.transform.Find("RoundNumber").GetComponent<Text>();
+            nextRoundArrow = NextRoundButton.transform.Find("Image").GetComponent<Image>();
+        }
 
         /// <summary>
         /// Automatically updates the build menu depending on the game state.
@@ -35,7 +50,7 @@
         public void ShowMenu(bool show)
         {
             GameObject buildMenu = BuildMenu.gameObject;
-            GameObject nextRound = Hud.transform.Find("NextRound").gameObject;
+            GameObject nextRound = NextRoundButton.gameObject;
             if (show)
             {
                 buildMenu.SetActive(true);
@@ -46,6 +61,20 @@
                 buildMenu.SetActive(false);
                 nextRound.SetActive(true);
             }
+        }
+
+        internal void GoToNextRound()
+        {
+            // reset arrow color
+            nextRoundArrow.color = Color.white;
+
+            // increase round number
+            nextRoundNumber.text = (int.Parse(nextRoundNumber.text) + 1) + "";
+        }
+
+        internal void ShowRoundFinish()
+        {
+            nextRoundArrow.color = Color.green;
         }
     }
 }
