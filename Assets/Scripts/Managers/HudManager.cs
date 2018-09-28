@@ -50,17 +50,7 @@
         public void ShowMenu(bool show)
         {
             GameObject buildMenu = BuildMenu.gameObject;
-            GameObject nextRound = NextRoundButton.gameObject;
-            if (show)
-            {
-                buildMenu.SetActive(true);
-                nextRound.SetActive(false);
-            }
-            else
-            {
-                buildMenu.SetActive(false);
-                nextRound.SetActive(true);
-            }
+            buildMenu.SetActive(show);
         }
 
         internal void GoToNextRound()
