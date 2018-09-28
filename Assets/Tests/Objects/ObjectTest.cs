@@ -10,7 +10,7 @@
         public void PositionTest()
         {
             Object u = new Object();
-            u.Type = UnitType.Tile;
+            u.Type = ObjectType.Tile;
             u.Position = new Coord(3, 4);
             Coord c = u.Position;
 

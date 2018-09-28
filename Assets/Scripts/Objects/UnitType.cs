@@ -1,6 +1,6 @@
 ﻿namespace Hackle.Objects
 {
-    public enum UnitType
+    public enum ObjectType
     {
         // tiles
         Tile,

@@ -10,6 +10,6 @@
     {
         public Coord Position { get; set; }
 
-        public UnitType Type { get; set; }
+        public ObjectType Type { get; set; }
     }
 }

@@ -47,27 +47,27 @@
             }
         }
 
-        private UnitType GetType(Transform tile)
+        private ObjectType GetType(Transform tile)
         {
             if (tile == GrassPrefab)
             {
-                return UnitType.GrassTile;
+                return ObjectType.GrassTile;
             }
             else if (tile == DesertPrefab)
             {
-                return UnitType.DesertTile;
+                return ObjectType.DesertTile;
             }
             else if (tile == WaterPrefab)
             {
-                return UnitType.WaterTile;
+                return ObjectType.WaterTile;
             }
             else if (tile == MountainPrefab)
             {
-                return UnitType.MountainTile;
+                return ObjectType.MountainTile;
             }
             else if (tile == ForestPrefab)
             {
-                return UnitType.ForestTile;
+                return ObjectType.ForestTile;
             }
             throw new InvalidOperationException();
         }

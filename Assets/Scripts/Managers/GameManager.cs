@@ -50,7 +50,7 @@
             villageCenter.parent = mapHolder;
             villageCenter.GetComponent<Objects.Object>().Position = position;
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
-            center.Type = UnitType.VillageCenter;
+            center.Type = ObjectType.VillageCenter;
             return center;
         }
 
@@ -60,7 +60,7 @@
             knightTransform.parent = mapHolder;
             knightTransform.GetComponent<Objects.Object>().Position = position;
             Knight knight = knightTransform.gameObject.GetComponent<Knight>();
-            knight.Type = UnitType.Knight;
+            knight.Type = ObjectType.Knight;
             return knight;
         }
 

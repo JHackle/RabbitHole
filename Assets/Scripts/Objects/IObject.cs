@@ -7,7 +7,7 @@
         /// <summary>
         /// The type of the unit.
         /// </summary>
-        UnitType Type { get; set; }
+        ObjectType Type { get; set; }
 
         /// <summary>
         /// The tile based position of the unit.
