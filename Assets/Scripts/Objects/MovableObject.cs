@@ -9,7 +9,7 @@
     /// <summary>
     /// Base class for all units which can be moved.
     /// </summary>
-    public class MovableUnit : SelectableUnit, IMovable
+    public class MovableObject : SelectableObject, IMovable
     {
         public int Steps { get; set; }
         public float Speed { get; set; }

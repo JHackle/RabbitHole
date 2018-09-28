@@ -1,6 +1,6 @@
 ﻿namespace Hackle.Objects
 {
-    public class Knight : MovableUnit
+    public class Knight : MovableObject
     {
         public Knight()
         {

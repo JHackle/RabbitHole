@@ -2,7 +2,7 @@
 {
     using UnityEngine;
 
-    public class VillageCenter : SelectableUnit
+    public class VillageCenter : SelectableObject
     {
     }
 }

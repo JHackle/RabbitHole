@@ -2,7 +2,7 @@
 {
     using Hackle.Objects;
 
-    public class Tile : SelectableUnit
+    public class Tile : SelectableObject
     {
         private IMovable unit;
         private ISelectable building;
