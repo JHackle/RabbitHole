@@ -50,8 +50,7 @@
                 if (Vector3.Distance(transform.position, target) < 0.001f)
                 {
                     move = false;
-                    X = targetPosition.X;
-                    Y = targetPosition.Y;
+                    Position = targetPosition;
                 }
             }
         }

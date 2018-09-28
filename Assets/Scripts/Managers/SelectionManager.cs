@@ -82,7 +82,7 @@
 
         private void HighlightTiles()
         {
-            Coord knightPos = currentSelection.Position();
+            Coord knightPos = currentSelection.Position;
             IMovable movable = currentSelection as IMovable;
 
             // calculate borders of the map

@@ -30,24 +30,21 @@
 
             Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().X = 5;
-            knightTransform.GetComponent<Unit>().Y = 5;
+            knightTransform.GetComponent<Unit>().Position = new Coord(5, 5);
             Knight knight1 = knightTransform.gameObject.GetComponent<Knight>();
             knight1.Type = UnitType.Knight;
             HumanPlayer.AddUnit(knight1);
 
             knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 6), Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().X = 5;
-            knightTransform.GetComponent<Unit>().Y = 6;
+            knightTransform.GetComponent<Unit>().Position = new Coord(5, 6);
             Knight knight2 = knightTransform.gameObject.GetComponent<Knight>();
             knight2.Type = UnitType.Knight;
             HumanPlayer.AddUnit(knight2);
 
             Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
-            villageCenter.GetComponent<Unit>().X = 5;
-            villageCenter.GetComponent<Unit>().Y = 5;
+            villageCenter.GetComponent<Unit>().Position = new Coord(5, 5);
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
             center.Type = UnitType.VillageCenter;
             HumanPlayer.AddUnit(center);
@@ -96,7 +93,7 @@
                 if (tile.IsSelected())
                 {
                     // just move the unit to the clicked tile
-                    SelectionManager.SelectedUnit<IMovable>().Move(tile.Position());
+                    SelectionManager.SelectedUnit<IMovable>().Move(tile.Position);
                 }
                 // remove the selection and hide build menu
                 SelectionManager.Deselect();

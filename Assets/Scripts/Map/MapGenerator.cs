@@ -42,8 +42,7 @@
 
                     // set properties of tile
                     tiles[x, y].Type = GetType(tileTransforms[x, y]);
-                    tiles[x, y].X = x;
-                    tiles[x, y].Y = y;
+                    tiles[x, y].Position = new Coord(x, y);
                 }
             }
         }
