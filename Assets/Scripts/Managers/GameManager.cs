@@ -71,26 +71,12 @@
 
             if (clickedUnit is Tile)
             {
-                Tile tile = clickedUnit as Tile;
-                if (SelectionManager.IsSelectedUnitOfType<IMovable>())
-                {
-                    if (tile.IsSelected())
-                    {
-                        SelectionManager.SelectedUnit<IMovable>().Move(tile.Position());
-                    }
-                    SelectionManager.Deselect();
-                    BuildMenuManager.UpdateBuildMenu();
-                }
-                else
-                {
-                    SelectionManager.Select(clickedUnit as ISelectable);
-                    BuildMenuManager.UpdateBuildMenu();
-                }
+                HandleClickOnTile(clickedUnit as Tile);
             }
             else 
             {
-                ISelectable selectable = clickedUnit as ISelectable;
-                SelectionManager.Select(selectable);
+                // if the clicked object is not a tile, just select the clicked object and update the build menu
+                SelectionManager.Select(clickedUnit as ISelectable);
                 BuildMenuManager.UpdateBuildMenu();
             }
 
@@ -98,6 +84,29 @@
             if (!HumanPlayer.CanAnyUnitMove())
             {
                 NextRoundArrow.color = Color.green;
+            }
+        }
+
+        private void HandleClickOnTile(Tile tile)
+        {
+            // was a unit selected before?
+            if (SelectionManager.IsSelectedUnitOfType<IMovable>())
+            {
+                // is the clicked tile in range of selected unit?
+                if (tile.IsSelected())
+                {
+                    // just move the unit to the clicked tile
+                    SelectionManager.SelectedUnit<IMovable>().Move(tile.Position());
+                }
+                // remove the selection and hide build menu
+                SelectionManager.Deselect();
+                BuildMenuManager.UpdateBuildMenu();
+            }
+            else
+            {
+                // in any other case the clicked tile should be selected and the build menu updated
+                SelectionManager.Select(tile as ISelectable);
+                BuildMenuManager.UpdateBuildMenu();
             }
         }
 
