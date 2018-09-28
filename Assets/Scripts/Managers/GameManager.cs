@@ -3,6 +3,7 @@
     using Hackle.Map;
     using Hackle.Objects;
     using Hackle.Util;
+    using System;
     using System.Collections.Generic;
     using UnityEngine;
     using UnityEngine.UI;
@@ -29,30 +30,38 @@
             MapGenerator.GenerateMap();
 
             Coord knight1Pos = new Coord(5, 5);
-            Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
-            knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().Position = knight1Pos;
-            Knight knight1 = knightTransform.gameObject.GetComponent<Knight>();
-            knight1.Type = UnitType.Knight;
+            Knight knight1 = CreateKnight(knight1Pos);
             humanPlayer.AddUnit(knight1);
             MapGenerator.GetTileAt(knight1Pos).SetUnit(knight1);
 
             Coord knight2Pos = new Coord(5, 6);
-            knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(5, 6), Quaternion.identity).transform;
-            knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Unit>().Position = knight2Pos;
-            Knight knight2 = knightTransform.gameObject.GetComponent<Knight>();
-            knight2.Type = UnitType.Knight;
+            Knight knight2 = CreateKnight(knight2Pos);
             humanPlayer.AddUnit(knight2);
             MapGenerator.GetTileAt(knight2Pos).SetUnit(knight2);
 
-            Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
-            villageCenter.parent = mapHolder;
-            villageCenter.GetComponent<Unit>().Position = knight1Pos;
-            VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
-            center.Type = UnitType.VillageCenter;
+            VillageCenter center = CreateVillageCenter(knight1Pos);
             humanPlayer.AddUnit(center);
             MapGenerator.GetTileAt(knight1Pos).SetBuilding(center);
+        }
+
+        private VillageCenter CreateVillageCenter(Coord position)
+        {
+            Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
+            villageCenter.parent = mapHolder;
+            villageCenter.GetComponent<Unit>().Position = position;
+            VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
+            center.Type = UnitType.VillageCenter;
+            return center;
+        }
+
+        private Knight CreateKnight(Coord position)
+        {
+            Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
+            knightTransform.parent = mapHolder;
+            knightTransform.GetComponent<Unit>().Position = position;
+            Knight knight = knightTransform.gameObject.GetComponent<Knight>();
+            knight.Type = UnitType.Knight;
+            return knight;
         }
 
         public void NextRound()
