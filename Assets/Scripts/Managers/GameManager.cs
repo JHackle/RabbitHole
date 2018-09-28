@@ -1,5 +1,6 @@
 ﻿namespace Hackle.Managers
 {
+    using Hackle.Factories;
     using Hackle.Map;
     using Hackle.Objects;
     using Hackle.Util;
@@ -21,47 +22,28 @@
         public Transform KnightPrefab;
 
         private PlayerManager humanPlayer;
-        private Transform mapHolder;
+        private ObjectFactory factory;
 
         void Start()
         {
-            mapHolder = RestoreMapholder();
+            factory = gameObject.AddComponent<ObjectFactory>();
+            factory.Init(VillageCenterPrefab, KnightPrefab);
             humanPlayer = new PlayerManager();
             MapGenerator.GenerateMap();
 
             Coord knight1Pos = new Coord(5, 5);
-            Knight knight1 = CreateKnight(knight1Pos);
+            Knight knight1 = factory.CreateKnight(knight1Pos);
             humanPlayer.AddUnit(knight1);
             MapGenerator.GetTileAt(knight1Pos).SetUnit(knight1);
 
             Coord knight2Pos = new Coord(5, 6);
-            Knight knight2 = CreateKnight(knight2Pos);
+            Knight knight2 = factory.CreateKnight(knight2Pos);
             humanPlayer.AddUnit(knight2);
             MapGenerator.GetTileAt(knight2Pos).SetUnit(knight2);
 
-            VillageCenter center = CreateVillageCenter(knight1Pos);
+            VillageCenter center = factory.CreateVillageCenter(knight1Pos);
             humanPlayer.AddUnit(center);
             MapGenerator.GetTileAt(knight1Pos).SetBuilding(center);
-        }
-
-        private VillageCenter CreateVillageCenter(Coord position)
-        {
-            Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
-            villageCenter.parent = mapHolder;
-            villageCenter.GetComponent<Objects.Object>().Position = position;
-            VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
-            center.Type = ObjectType.VillageCenter;
-            return center;
-        }
-
-        private Knight CreateKnight(Coord position)
-        {
-            Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
-            knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Objects.Object>().Position = position;
-            Knight knight = knightTransform.gameObject.GetComponent<Knight>();
-            knight.Type = ObjectType.Knight;
-            return knight;
         }
 
         public void NextRound()
@@ -119,18 +101,6 @@
                 SelectionManager.Select(tile as ISelectable);
                 BuildMenuManager.UpdateBuildMenu();
             }
-        }
-
-        private Transform RestoreMapholder()
-        {
-            string holderName = "Game Objects";
-            if (transform.Find(holderName))
-            {
-                DestroyImmediate(transform.Find(holderName).gameObject);
-            }
-            Transform mapHolder = new GameObject(holderName).transform;
-            mapHolder.parent = transform;
-            return mapHolder;
         }
     }
 }
