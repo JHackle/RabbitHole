@@ -46,7 +46,7 @@
 
         private VillageCenter CreateVillageCenter(Coord position)
         {
-            Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(5, 5), Quaternion.identity).transform;
+            Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
             villageCenter.GetComponent<Unit>().Position = position;
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
