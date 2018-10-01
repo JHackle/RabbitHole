@@ -68,8 +68,8 @@
             // was a unit selected before?
             if (SelectionManager.IsSelectedUnitOfType<IMovable>())
             {
-                // is the clicked tile in range of selected unit?
-                if (tile.IsSelected())
+                // is the clicked tile empty and in range of selected unit?
+                if (tile.IsSelected() && !tile.HasUnit())
                 {
                     // just move the unit to the clicked tile
                     SelectionManager.SelectedUnit<IMovable>().Move(tile);
