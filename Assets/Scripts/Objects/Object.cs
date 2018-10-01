@@ -8,7 +8,7 @@
     /// </summary>
     public class Object : MonoBehaviour, IObject
     {
-        public Tile Location { get; set; }
+        public Tile Tile { get; set; }
 
         public ObjectType Type { get; set; }
     }

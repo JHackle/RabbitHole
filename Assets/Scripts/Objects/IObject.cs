@@ -12,6 +12,6 @@
         /// <summary>
         /// The tile where this object is placed on.
         /// </summary>
-        Tile Location { get; set; }
+        Tile Tile { get; set; }
     }
 }

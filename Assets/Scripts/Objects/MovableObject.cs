@@ -49,7 +49,7 @@
                 if (Vector3.Distance(transform.position, target) < 0.001f)
                 {
                     move = false;
-                    Location = targetTile;
+                    Tile = targetTile;
                 }
             }
         }

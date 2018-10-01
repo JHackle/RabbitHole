@@ -27,7 +27,7 @@
             // actually set the position of the building
             building.transform.position = TileUtil.CoordToPosition(Position);
             // set a link to this tile in the building
-            building.Location = this;
+            building.Tile = this;
             // store the building on this tile
             this.building = building;
         }
@@ -37,7 +37,7 @@
             // actually set the position of the unit
             unit.transform.Translate(TileUtil.CoordToPosition(Position));
             // set a link to this tile in the building
-            unit.Location = this;
+            unit.Tile = this;
             // store the building on this tile
             this.unit = unit;
         }
