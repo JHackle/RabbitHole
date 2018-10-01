@@ -20,19 +20,19 @@
         {
             MapGenerator.GenerateMap();
 
-            Coord knight1Pos = new Coord(5, 5);
-            Knight knight1 = ObjectFactory.CreateKnight();
-            HumanPlayer.AddObject(knight1);
-            MapGenerator.GetTileAt(knight1Pos).SetUnit(knight1);
+            // set starting resources
+            HumanPlayer.Wood = 100;
+            HumanPlayer.Food = 50;
+            HumanPlayer.Gold = 15;
 
-            Coord knight2Pos = new Coord(5, 6);
-            Knight knight2 = ObjectFactory.CreateKnight();
-            HumanPlayer.AddObject(knight2);
-            MapGenerator.GetTileAt(knight2Pos).SetUnit(knight2);
+            Coord startingPosition = MapGenerator.GetStartingPosition();
+            Knight knight = ObjectFactory.CreateKnight();
+            HumanPlayer.AddObject(knight);
+            MapGenerator.GetTileAt(startingPosition).SetUnit(knight);
 
             VillageCenter center = ObjectFactory.CreateVillageCenter();
             HumanPlayer.AddObject(center);
-            MapGenerator.GetTileAt(knight1Pos).SetBuilding(center);
+            MapGenerator.GetTileAt(startingPosition).SetBuilding(center);
         }
 
         public void NextRound()

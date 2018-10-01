@@ -47,6 +47,14 @@
             }
         }
 
+        internal Coord GetStartingPosition()
+        {
+            System.Random rnd = new System.Random();
+            int x = rnd.Next(0, Constants.MapSettings.MapSize.X);
+            int y = rnd.Next(0, Constants.MapSettings.MapSize.Y);
+            return new Coord(x, y);
+        }
+
         private ObjectType GetType(Transform tile)
         {
             if (tile == GrassPrefab)
