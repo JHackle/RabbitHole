@@ -17,21 +17,19 @@
             mapHolder = RestoreMapholder();
         }
 
-        public VillageCenter CreateVillageCenter(Coord position)
+        public VillageCenter CreateVillageCenter()
         {
-            Transform villageCenter = Instantiate(VillageCenterPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
+            Transform villageCenter = Instantiate(VillageCenterPrefab, Vector3.zero, Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
-            villageCenter.GetComponent<Objects.Object>().Position = position;
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
             center.Type = ObjectType.VillageCenter;
             return center;
         }
 
-        public Knight CreateKnight(Coord position)
+        public Knight CreateKnight()
         {
-            Transform knightTransform = Instantiate(KnightPrefab, TileUtil.CoordToPosition(position), Quaternion.identity).transform;
+            Transform knightTransform = Instantiate(KnightPrefab, Vector3.zero, Quaternion.identity).transform;
             knightTransform.parent = mapHolder;
-            knightTransform.GetComponent<Objects.Object>().Position = position;
             Knight knight = knightTransform.gameObject.GetComponent<Knight>();
             knight.Type = ObjectType.Knight;
             return knight;

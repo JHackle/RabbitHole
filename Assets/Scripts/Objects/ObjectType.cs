@@ -3,7 +3,6 @@
     public enum ObjectType
     {
         // tiles
-        Tile,
         GrassTile,
         DesertTile,
         MountainTile,

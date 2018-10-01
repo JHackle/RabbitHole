@@ -12,12 +12,12 @@
         float Speed { get; set; }
 
         /// <summary>
-        /// Starts the movement from the current position to the target position.
+        /// Starts the movement from the current tile to the target tile.
         /// This method can not be called if a movement is currently in progress.
         /// This method returns immediately and does not await the end of the movement.
         /// </summary>
-        /// <param name="coord">the target position to move to</param>
-        void Move(Coord coord);
+        /// <param name="tile">the target tile to move to</param>
+        void Move(Tile tile);
 
         void RestoreSteps();
 

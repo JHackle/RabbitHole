@@ -10,11 +10,8 @@
         public void PositionTest()
         {
             Object u = new Object();
-            u.Type = ObjectType.Tile;
-            u.Position = new Coord(3, 4);
-            Coord c = u.Position;
-
-            Assert.AreEqual(new Coord(3, 4), c);
+            u.Type = ObjectType.GrassTile;
+            Assert.AreEqual(ObjectType.GrassTile, u.Type);
         }
     }
 }

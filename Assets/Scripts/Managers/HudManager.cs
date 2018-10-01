@@ -44,8 +44,6 @@
                 // write the type of selected unit to the menu
                 Text menuTitle = BuildMenu.transform.Find("Text").gameObject.GetComponent<Text>();
                 menuTitle.text = selected.Type.ToString();
-
-                
             }
             ShowMenu(showMenu);
         }

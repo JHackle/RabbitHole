@@ -20,16 +20,16 @@
             MapGenerator.GenerateMap();
 
             Coord knight1Pos = new Coord(5, 5);
-            Knight knight1 = ObjectFactory.CreateKnight(knight1Pos);
+            Knight knight1 = ObjectFactory.CreateKnight();
             humanPlayer.AddUnit(knight1);
             MapGenerator.GetTileAt(knight1Pos).SetUnit(knight1);
 
             Coord knight2Pos = new Coord(5, 6);
-            Knight knight2 = ObjectFactory.CreateKnight(knight2Pos);
+            Knight knight2 = ObjectFactory.CreateKnight();
             humanPlayer.AddUnit(knight2);
             MapGenerator.GetTileAt(knight2Pos).SetUnit(knight2);
 
-            VillageCenter center = ObjectFactory.CreateVillageCenter(knight1Pos);
+            VillageCenter center = ObjectFactory.CreateVillageCenter();
             humanPlayer.AddUnit(center);
             MapGenerator.GetTileAt(knight1Pos).SetBuilding(center);
         }
@@ -43,16 +43,16 @@
 
         public void Click(GameObject go)
         {
-            IObject clickedUnit = go.GetComponent<IObject>();
-
-            if (clickedUnit is Tile)
+            IObject clickedObject = go.GetComponent<IObject>();
+            
+            if (clickedObject is Tile)
             {
-                HandleClickOnTile(clickedUnit as Tile);
+                HandleClickOnTile(clickedObject as Tile);
             }
             else 
             {
                 // if the clicked object is not a tile, just select the clicked object and update the build menu
-                SelectionManager.Select(clickedUnit as ISelectable);
+                SelectionManager.Select(clickedObject as ISelectable);
                 HudManager.UpdateBuildMenu();
             }
 
@@ -72,7 +72,7 @@
                 if (tile.IsSelected())
                 {
                     // just move the unit to the clicked tile
-                    SelectionManager.SelectedUnit<IMovable>().Move(tile.Position);
+                    SelectionManager.SelectedUnit<IMovable>().Move(tile);
                 }
                 // remove the selection and hide build menu
                 SelectionManager.Deselect();

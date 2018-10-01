@@ -15,19 +15,17 @@
         public float Speed { get; set; }
 
         private bool move = false;
-        private Vector3 target;
-        private Coord targetPosition;
+        private Tile targetTile;
         private bool canMove = true;
 
-        public void Move(Coord coord)
+        public void Move(Tile tile)
         {
             if (move)
             {
-                throw new IllegalMoveException("Movement is currently in progress. Unable to start another movement to " + coord);
+                throw new IllegalMoveException("Movement is currently in progress. Unable to start another movement to " + tile.Position);
             }
 
-            target = TileUtil.CoordToPosition(coord);
-            targetPosition = coord;
+            targetTile = tile;
             move = true;
             canMove = false;
         }
@@ -46,11 +44,12 @@
         {
             if (move)
             {
+                Vector3 target = TileUtil.CoordToPosition(targetTile.Position);
                 transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * Speed);
                 if (Vector3.Distance(transform.position, target) < 0.001f)
                 {
                     move = false;
-                    Position = targetPosition;
+                    Location = targetTile;
                 }
             }
         }

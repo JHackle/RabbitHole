@@ -10,8 +10,8 @@
         ObjectType Type { get; set; }
 
         /// <summary>
-        /// The tile based position of the unit.
+        /// The tile where this object is placed on.
         /// </summary>
-        Coord Position { get; set; }
+        Tile Location { get; set; }
     }
 }
