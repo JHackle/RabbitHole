@@ -20,6 +20,8 @@
         public Transform NextRoundButton;
         public Transform BuildMenu;
 
+        public Image Lumberjack;
+
         private Text nextRoundNumber;
         private Image nextRoundArrow;
 
@@ -37,12 +39,13 @@
             bool showMenu = SelectionManager.IsUnitSelected();
             if (showMenu)
             {
-                // write the type of selected unit to the menu
                 ISelectable selected = SelectionManager.SelectedUnit<ISelectable>();
+
+                // write the type of selected unit to the menu
                 Text menuTitle = BuildMenu.transform.Find("Text").gameObject.GetComponent<Text>();
                 menuTitle.text = selected.Type.ToString();
 
-                // TODO : fill menu with content
+                
             }
             ShowMenu(showMenu);
         }
