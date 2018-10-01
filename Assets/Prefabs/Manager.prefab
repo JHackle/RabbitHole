@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114846099827351842}
   - component: {fileID: 114341365909872592}
   - component: {fileID: 114958997776454188}
+  - component: {fileID: 114224918703756170}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -59,6 +60,19 @@ MonoBehaviour:
   SelectionManager: {fileID: 114778997444723934}
   HudManager: {fileID: 114341365909872592}
   ObjectFactory: {fileID: 114958997776454188}
+  HumanPlayer: {fileID: 114224918703756170}
+--- !u!114 &114224918703756170
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027977995370488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3be41c8c3753a5c4e8cc3117aa588581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hud: {fileID: 114341365909872592}
 --- !u!114 &114341365909872592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,6 +93,7 @@ MonoBehaviour:
   Round: {fileID: 0}
   NextRoundButton: {fileID: 0}
   BuildMenu: {fileID: 0}
+  Lumberjack: {fileID: 0}
 --- !u!114 &114778997444723934
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -18,15 +18,15 @@
         [SetUp]
         public void SetUp()
         {
-            waterPrefab = Resources.Load("Tests/WaterTile") as GameObject;
+            waterPrefab = UnityEngine.Resources.Load("Tests/WaterTile") as GameObject;
             waterPrefab.tag = "WaterTile";
-            grassPrefab = Resources.Load("Tests/GrassTile") as GameObject;
+            grassPrefab = UnityEngine.Resources.Load("Tests/GrassTile") as GameObject;
             grassPrefab.tag = "GrassTile";
-            desertPrefab = Resources.Load("Tests/DesertTile") as GameObject;
+            desertPrefab = UnityEngine.Resources.Load("Tests/DesertTile") as GameObject;
             desertPrefab.tag = "DesertTile";
-            mountainPrefab = Resources.Load("Tests/MountenTile") as GameObject;
+            mountainPrefab = UnityEngine.Resources.Load("Tests/MountenTile") as GameObject;
             mountainPrefab.tag = "MountainTile";
-            forestPrefab = Resources.Load("Tests/ForestTile") as GameObject;
+            forestPrefab = UnityEngine.Resources.Load("Tests/ForestTile") as GameObject;
             forestPrefab.tag = "ForestTile";
 
             mapGenerator = new GameObject().AddComponent<MapGenerator>();

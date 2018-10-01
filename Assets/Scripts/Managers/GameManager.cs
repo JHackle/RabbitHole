@@ -14,25 +14,24 @@
         public HudManager HudManager;
         public ObjectFactory ObjectFactory;
 
-        private PlayerManager humanPlayer;
+        public PlayerManager HumanPlayer;
 
         void Start()
         {
-            humanPlayer = new PlayerManager();
             MapGenerator.GenerateMap();
 
             Coord knight1Pos = new Coord(5, 5);
             Knight knight1 = ObjectFactory.CreateKnight();
-            humanPlayer.AddObject(knight1);
+            HumanPlayer.AddObject(knight1);
             MapGenerator.GetTileAt(knight1Pos).SetUnit(knight1);
 
             Coord knight2Pos = new Coord(5, 6);
             Knight knight2 = ObjectFactory.CreateKnight();
-            humanPlayer.AddObject(knight2);
+            HumanPlayer.AddObject(knight2);
             MapGenerator.GetTileAt(knight2Pos).SetUnit(knight2);
 
             VillageCenter center = ObjectFactory.CreateVillageCenter();
-            humanPlayer.AddObject(center);
+            HumanPlayer.AddObject(center);
             MapGenerator.GetTileAt(knight1Pos).SetBuilding(center);
         }
 
@@ -41,10 +40,10 @@
             SelectionManager.Deselect();
 
             // collect resources
-            humanPlayer.Harvest();
+            HumanPlayer.Harvest();
 
             // restore steps of all units
-            humanPlayer.ResetSteps();
+            HumanPlayer.ResetSteps();
 
             HudManager.GoToNextRound();
         }
@@ -65,7 +64,7 @@
             }
 
             // indicate that no unit can move any more
-            if (!humanPlayer.CanAnyUnitMove())
+            if (!HumanPlayer.CanAnyUnitMove())
             {
                 HudManager.ShowRoundFinish();
             }

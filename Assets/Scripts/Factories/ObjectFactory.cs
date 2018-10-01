@@ -1,10 +1,8 @@
 ﻿namespace Hackle.Factories
 {
-    using Hackle.Map;
     using Hackle.Objects;
     using Hackle.Objects.Buildings;
     using Hackle.Objects.Units;
-    using Hackle.Util;
     using UnityEngine;
 
     public class ObjectFactory : MonoBehaviour
@@ -25,6 +23,7 @@
             villageCenter.parent = mapHolder;
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
             center.Type = ObjectType.VillageCenter;
+            center.ResourcesPerTurn = new Util.Resources(0, 0, 1);
             return center;
         }
 

@@ -6,13 +6,12 @@
     using System.Linq;
     using UnityEngine;
 
-    class PlayerManager
+    public class PlayerManager : MonoBehaviour
     {
+        public HudManager Hud;
+
         private int capacityMax;
         private int capacity;
-        private int wood;
-        private int food;
-        private int gold;
 
         private List<IObject> Objects = new List<IObject>();
 
@@ -33,12 +32,17 @@
 
         internal void Harvest()
         {
-
+            foreach (Building building in Buildings())
+            {
+                Wood += building.ResourcesPerTurn.Wood;
+                Food += building.ResourcesPerTurn.Food;
+                Gold += building.ResourcesPerTurn.Gold;
+            }
         }
 
-        private List<IObject> Selectables()
+        private List<Building> Buildings()
         {
-            return Objects.Where(u => u is ISelectable).ToList();
+            return Objects.Where(u => u is Building).ToList().Cast<Building>().ToList();
         }
 
         /// <summary>
@@ -57,6 +61,41 @@
         private List<IObject> MovablesWithSteps()
         {
             return Movables().Where(u => (u as IMovable).CanMove()).ToList();
+        }
+
+
+        public int Wood
+        {
+            get
+            {
+                return Convert.ToInt32(Hud.GetWood());
+            }
+            set
+            {
+                Hud.SetWood(value);
+            }
+        }
+        public int Food
+        {
+            get
+            {
+                return Convert.ToInt32(Hud.GetFood());
+            }
+            set
+            {
+                Hud.SetFood(value);
+            }
+        }
+        public int Gold
+        {
+            get
+            {
+                return Convert.ToInt32(Hud.GetGold());
+            }
+            set
+            {
+                Hud.SetGold(value);
+            }
         }
     }
 }
