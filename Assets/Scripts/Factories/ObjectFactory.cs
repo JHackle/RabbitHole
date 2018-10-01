@@ -2,6 +2,8 @@
 {
     using Hackle.Map;
     using Hackle.Objects;
+    using Hackle.Objects.Buildings;
+    using Hackle.Objects.Units;
     using Hackle.Util;
     using UnityEngine;
 

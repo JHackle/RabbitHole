@@ -3,6 +3,8 @@
     using Hackle.Factories;
     using Hackle.Map;
     using Hackle.Objects;
+    using Hackle.Objects.Buildings;
+    using Hackle.Objects.Units;
     using UnityEngine;
 
     public class GameManager : MonoBehaviour
@@ -21,23 +23,29 @@
 
             Coord knight1Pos = new Coord(5, 5);
             Knight knight1 = ObjectFactory.CreateKnight();
-            humanPlayer.AddUnit(knight1);
+            humanPlayer.AddObject(knight1);
             MapGenerator.GetTileAt(knight1Pos).SetUnit(knight1);
 
             Coord knight2Pos = new Coord(5, 6);
             Knight knight2 = ObjectFactory.CreateKnight();
-            humanPlayer.AddUnit(knight2);
+            humanPlayer.AddObject(knight2);
             MapGenerator.GetTileAt(knight2Pos).SetUnit(knight2);
 
             VillageCenter center = ObjectFactory.CreateVillageCenter();
-            humanPlayer.AddUnit(center);
+            humanPlayer.AddObject(center);
             MapGenerator.GetTileAt(knight1Pos).SetBuilding(center);
         }
 
         public void NextRound()
         {
             SelectionManager.Deselect();
+
+            // collect resources
+            humanPlayer.Harvest();
+
+            // restore steps of all units
             humanPlayer.ResetSteps();
+
             HudManager.GoToNextRound();
         }
 

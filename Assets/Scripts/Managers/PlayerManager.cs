@@ -8,21 +8,37 @@
 
     class PlayerManager
     {
-        private List<IObject> Units = new List<IObject>();
+        private int capacityMax;
+        private int capacity;
+        private int wood;
+        private int food;
+        private int gold;
 
-        public void AddUnit(IObject unit)
+        private List<IObject> Objects = new List<IObject>();
+
+        internal void AddObject(IObject obj)
         {
-            Units.Add(unit);
+            Objects.Add(obj);
         }
 
-        public bool CanAnyUnitMove()
+        internal bool CanAnyUnitMove()
         {
             return MovablesWithSteps().Count > 0;
         }
 
-        public void ResetSteps()
+        internal void ResetSteps()
         {
             Movables().ForEach(u => (u as IMovable).RestoreSteps());
+        }
+
+        internal void Harvest()
+        {
+
+        }
+
+        private List<IObject> Selectables()
+        {
+            return Objects.Where(u => u is ISelectable).ToList();
         }
 
         /// <summary>
@@ -31,7 +47,7 @@
         /// <returns></returns>
         private List<IObject> Movables()
         {
-            return Units.Where(u => u is IMovable).ToList();
+            return Objects.Where(u => u is IMovable).ToList();
         }
 
         /// <summary>
