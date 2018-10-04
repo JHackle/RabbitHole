@@ -93,7 +93,9 @@ MonoBehaviour:
   Round: {fileID: 0}
   NextRoundButton: {fileID: 0}
   BuildMenu: {fileID: 0}
-  Lumberjack: {fileID: 0}
+  MenuItem: {fileID: 1981003295627750, guid: 11edfe4b14e797546baf53a0fcfbf731, type: 2}
+  Lumberjack: {fileID: 21300000, guid: 4796c4a2dc483964a94381dc13df8b73, type: 3}
+  GoldMine: {fileID: 21300000, guid: c29728fa69c861f46beeb11b4b3b0669, type: 3}
 --- !u!114 &114778997444723934
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -22,7 +22,10 @@
         public Transform NextRoundButton;
         public Transform BuildMenu;
 
-        public Image Lumberjack;
+        public GameObject MenuItem;
+
+        public Sprite Lumberjack;
+        public Sprite GoldMine;
 
         private Text nextRoundNumber;
         private Image nextRoundArrow;
@@ -100,13 +103,50 @@
             bool showMenu = SelectionManager.IsUnitSelected();
             if (showMenu)
             {
-                ISelectable selected = SelectionManager.SelectedUnit<ISelectable>();
-
-                // write the type of selected unit to the menu
-                Text menuTitle = BuildMenu.transform.Find("Text").gameObject.GetComponent<Text>();
-                menuTitle.text = selected.Type.ToString();
+                CreateBuildMenu();
             }
             ShowMenu(showMenu);
+        }
+
+        private void CreateBuildMenu()
+        {
+            ISelectable selected = SelectionManager.SelectedUnit<ISelectable>();
+
+            // write the type of selected unit to the menu
+            Text menuTitle = BuildMenu.transform.Find("Text").gameObject.GetComponent<Text>();
+            menuTitle.text = selected.Type.ToString();
+
+            // destroy all menu elements first
+            Transform content = BuildMenu.Find("ScrollView").Find("Viewport").Find("Content");
+            foreach (Transform child in content)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+
+            GameObject item;
+            switch (selected.Type)
+            {
+                case ObjectType.GrassTile:
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
+                    break;
+                case ObjectType.DesertTile:
+                    break;
+                case ObjectType.MountainTile:
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
+                    item.transform.SetParent(content.transform, false);
+                    break;
+                case ObjectType.WaterTile:
+                    break;
+                case ObjectType.ForestTile:
+                    break;
+                case ObjectType.Knight:
+                    break;
+                case ObjectType.VillageCenter:
+                    break;
+            }
         }
 
         public void ShowMenu(bool show)
