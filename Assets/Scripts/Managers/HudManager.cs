@@ -29,6 +29,10 @@
         private Text woodCount;
         private Text foodCount;
         private Text goldCount;
+        private Text capacityCount;
+
+        private int maxCapacity = 0;
+        private int capacity = 0;
 
         private void Start()
         {
@@ -37,6 +41,24 @@
             woodCount = Wood.Find("Text").GetComponent<Text>();
             foodCount = Food.Find("Text").GetComponent<Text>();
             goldCount = Gold.Find("Text").GetComponent<Text>();
+            capacityCount = Capacity.Find("Text").GetComponent<Text>();
+        }
+
+        internal void ChangeMaxCapacity(int cap)
+        {
+            maxCapacity += cap;
+            UpdateCapacity();
+        }
+
+        private void UpdateCapacity()
+        {
+            capacityCount.text = maxCapacity + "/" + capacity;
+        }
+
+        internal void ChangeCapacity(int cap)
+        {
+            capacity += cap;
+            UpdateCapacity();
         }
 
         internal String GetWood()

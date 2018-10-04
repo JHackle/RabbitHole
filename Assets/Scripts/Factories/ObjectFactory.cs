@@ -1,5 +1,6 @@
 ﻿namespace Hackle.Factories
 {
+    using Hackle.Managers;
     using Hackle.Objects;
     using Hackle.Objects.Buildings;
     using Hackle.Objects.Units;
@@ -7,6 +8,8 @@
 
     public class ObjectFactory : MonoBehaviour
     {
+        public HudManager HudManager;
+
         public Transform VillageCenterPrefab;
         public Transform KnightPrefab;
 
@@ -24,6 +27,8 @@
             VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
             center.Type = ObjectType.VillageCenter;
             center.ResourcesPerTurn = new Util.Resources(0, 0, 1);
+            center.Capacity = 5;
+            HudManager.ChangeMaxCapacity(center.Capacity);
             return center;
         }
 
@@ -33,6 +38,8 @@
             knightTransform.parent = mapHolder;
             Knight knight = knightTransform.gameObject.GetComponent<Knight>();
             knight.Type = ObjectType.Knight;
+            knight.CapacityValue = 1;
+            HudManager.ChangeCapacity(knight.CapacityValue);
             return knight;
         }
 

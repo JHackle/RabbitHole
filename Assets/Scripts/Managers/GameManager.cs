@@ -21,11 +21,12 @@
             MapGenerator.GenerateMap();
 
             // set starting resources
-            HumanPlayer.Wood = 100;
-            HumanPlayer.Food = 50;
-            HumanPlayer.Gold = 15;
+            HumanPlayer.Wood = 20;
+            HumanPlayer.Food = 0;
+            HumanPlayer.Gold = 0;
 
             Coord startingPosition = MapGenerator.GetStartingPosition();
+
             Knight knight = ObjectFactory.CreateKnight();
             HumanPlayer.AddObject(knight);
             MapGenerator.GetTileAt(startingPosition).SetUnit(knight);

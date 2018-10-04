@@ -7,5 +7,6 @@ namespace Hackle.Objects.Units
 {
     public class Unit : MovableObject
     {
+        public int CapacityValue { get; set; }
     }
 }

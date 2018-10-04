@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856783efa9de78e4ca5c0de844471b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HudManager: {fileID: 114341365909872592}
   VillageCenterPrefab: {fileID: 4465161517143852, guid: f5acdf7769d3da34eb5734bd3e119f34,
     type: 2}
   KnightPrefab: {fileID: 4694932111807992, guid: 335a5db5883dd1749acd200abfc7a565,

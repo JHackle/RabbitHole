@@ -9,5 +9,7 @@ namespace Hackle.Objects
     public class Building : SelectableObject
     {
         public Resources ResourcesPerTurn { get; set; }
+
+        public int Capacity { get; set; }
     }
 }
