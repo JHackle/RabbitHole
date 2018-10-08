@@ -127,9 +127,6 @@
             switch (selected.Type)
             {
                 case ObjectType.GrassTile:
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
                     break;
                 case ObjectType.DesertTile:
                     break;
@@ -137,10 +134,58 @@
                     item = Instantiate(MenuItem);
                     item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
                     item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
+                    item.transform.SetParent(content.transform, false);
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
                     break;
                 case ObjectType.WaterTile:
                     break;
                 case ObjectType.ForestTile:
+                    item = Instantiate(MenuItem);
+                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
+                    item.transform.SetParent(content.transform, false);
                     break;
                 case ObjectType.Knight:
                     break;
@@ -151,8 +196,8 @@
 
         public void ShowMenu(bool show)
         {
-            GameObject buildMenu = BuildMenu.gameObject;
-            buildMenu.SetActive(show);
+            BuildMenu.gameObject.SetActive(show);
+            NextRoundButton.gameObject.SetActive(!show);
         }
 
         internal void GoToNextRound()
