@@ -37,6 +37,8 @@
         private int maxCapacity = 0;
         private int capacity = 0;
 
+        private Color defaultColor;
+
         private void Start()
         {
             nextRoundNumber = Round.transform.Find("RoundNumber").GetComponent<Text>();
@@ -203,7 +205,7 @@
         internal void GoToNextRound()
         {
             // reset arrow color
-            nextRoundArrow.color = Color.white;
+            nextRoundArrow.color = defaultColor;
 
             // increase round number
             nextRoundNumber.text = (int.Parse(nextRoundNumber.text) + 1) + "";
@@ -211,6 +213,7 @@
 
         internal void ShowRoundFinish()
         {
+            defaultColor = nextRoundArrow.color;
             nextRoundArrow.color = Color.green;
         }
     }
