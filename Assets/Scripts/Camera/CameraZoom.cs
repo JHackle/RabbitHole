@@ -63,7 +63,6 @@
                     // if we hover over an UI element we don't need raycasts
                     if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                     {
-                        Debug.Log("UI");
                         return;
                     }
                     Vector2[] newPositions = new Vector2[] { Input.GetTouch(0).position, Input.GetTouch(1).position };
@@ -105,7 +104,6 @@
                 // if we hover over an UI element we don't need raycasts
                 if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 {
-                    Debug.Log("UI");
                     return;
                 }
                 PanCamera(Input.mousePosition);
