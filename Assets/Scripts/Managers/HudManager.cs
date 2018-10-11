@@ -38,6 +38,7 @@
         private int capacity = 0;
 
         private Color defaultColor;
+        private Color highlightColor;
 
         private void Start()
         {
@@ -47,6 +48,11 @@
             foodCount = Food.Find("Text").GetComponent<Text>();
             goldCount = Gold.Find("Text").GetComponent<Text>();
             capacityCount = Capacity.Find("Text").GetComponent<Text>();
+
+            // define colors
+            ColorUtility.TryParseHtmlString("#1EFF00FF", out highlightColor);
+            ColorUtility.TryParseHtmlString("#FED26CFF", out defaultColor);
+            nextRoundArrow.color = defaultColor;
         }
 
         internal void ChangeMaxCapacity(int cap)
@@ -213,8 +219,7 @@
 
         internal void ShowRoundFinish()
         {
-            defaultColor = nextRoundArrow.color;
-            nextRoundArrow.color = Color.green;
+            nextRoundArrow.color = highlightColor;
         }
     }
 }
