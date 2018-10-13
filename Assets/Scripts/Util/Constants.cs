@@ -17,7 +17,7 @@
             // specify default values to avoid nullpointer exceptions
             // this might be important if the Game scene was started directly
             MapSettings = new MapSettings();
-            MapSettings.MapSize = new Coord(10, 10);
+            MapSettings.MapSize = new Coord(20, 20);
             MapSettings.GrassPercent = 1;
             MapSettings.ForestPercent = 1;
             MapSettings.DesertPercent = 1;

@@ -12,7 +12,7 @@
         public override void OnInspectorGUI()
         {
             Constants.MapSettings = new MapSettings();
-            Constants.MapSettings.MapSize = new Coord(10, 10);
+            Constants.MapSettings.MapSize = new Coord(20, 20);
             Constants.MapSettings.GrassPercent = 1;
             Constants.MapSettings.ForestPercent = 1;
             Constants.MapSettings.DesertPercent = 1;
