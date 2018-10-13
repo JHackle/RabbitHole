@@ -127,8 +127,6 @@
             Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
             Vector3 move = new Vector3(offset.x * PanSpeed, 0, offset.y * PanSpeed);
 
-            Debug.DrawLine(transform.position, move);
-
             // Perform the movement
             transform.Translate(move, Space.World);
 
