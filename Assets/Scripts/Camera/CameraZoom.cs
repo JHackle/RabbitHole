@@ -8,9 +8,9 @@
         private static readonly float ZoomSpeedTouch = .05f;
         private static readonly float ZoomSpeedMouse = 20f;
 
-        private static float[] BoundsX = new float[] { -10f, Hackle.Util.Constants.MapSettings.MapSize.X * Hackle.Util.Constants.MapSettings.TileSize + 10f };
-        private static float[] BoundsZ = new float[] { -10f, Hackle.Util.Constants.MapSettings.MapSize.Y * Hackle.Util.Constants.MapSettings.TileSize + 10f };
-        private static readonly float[] ZoomBounds = new float[] { 10f, 85f };
+        private static float[] BoundsX;
+        private static float[] BoundsZ;
+        private static readonly float[] ZoomBounds = new float[] { 10f, 50f };
 
         private Camera cam;
 
@@ -23,10 +23,17 @@
         void Awake()
         {
             cam = GetComponent<Camera>();
+            BoundsX = new float[] { Util.Constants.MapSettings.MinX(), Util.Constants.MapSettings.MaxX() };
+            BoundsZ = new float[] { Util.Constants.MapSettings.MinZ() - 7f, Util.Constants.MapSettings.MaxZ() - 10f };
         }
 
         void Update()
         {
+            Debug.DrawLine(new Vector3(BoundsX[0], 0, BoundsZ[0]), new Vector3(BoundsX[0], 0, BoundsZ[1]), Color.red);
+            Debug.DrawLine(new Vector3(BoundsX[0], 0, BoundsZ[1]), new Vector3(BoundsX[1], 0, BoundsZ[1]), Color.red);
+            Debug.DrawLine(new Vector3(BoundsX[1], 0, BoundsZ[1]), new Vector3(BoundsX[1], 0, BoundsZ[0]), Color.red);
+            Debug.DrawLine(new Vector3(BoundsX[1], 0, BoundsZ[0]), new Vector3(BoundsX[0], 0, BoundsZ[0]), Color.red);
+
             if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
             {
                 HandleTouch();
@@ -119,6 +126,8 @@
             // Determine how much to move the camera
             Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
             Vector3 move = new Vector3(offset.x * PanSpeed, 0, offset.y * PanSpeed);
+
+            Debug.DrawLine(transform.position, move);
 
             // Perform the movement
             transform.Translate(move, Space.World);

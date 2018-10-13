@@ -8,7 +8,7 @@
 
     public class TileGenerator
     {
-        private readonly MapSettings mapSettings;
+        private MapSettings mapSettings;
         private readonly Transform waterPrefab;
         private readonly Transform grassPrefab;
         private readonly Transform desertPrefab;
@@ -17,7 +17,6 @@
 
         public TileGenerator(Transform waterPrefab, Transform grassPrefab, Transform desertPrefab, Transform mountainPrefab, Transform forestPrefab)
         {
-            this.mapSettings = Constants.MapSettings;
             this.waterPrefab = waterPrefab;
             this.grassPrefab = grassPrefab;
             this.desertPrefab = desertPrefab;
@@ -27,6 +26,7 @@
 
         public Transform[,] GenerateTiles()
         {
+            this.mapSettings = Constants.MapSettings;
             // calculate how many tiles of each kind are required
             int numOfTiles = mapSettings.MapSize.X * mapSettings.MapSize.Y;
             float sum = mapSettings.CalculateTilesSum();

@@ -17,5 +17,25 @@
         {
             return WaterPercent + GrassPercent + DesertPercent + MountainPercent + ForestPercent;
         }
+
+        public float MinX()
+        {
+            return -MapSize.X / 2f * TileSize;
+        }
+
+        public float MaxX()
+        {
+            return MapSize.X / 2f * TileSize;
+        }
+
+        public float MinZ()
+        {
+            return -MapSize.Y / 2f * TileSize;
+        }
+
+        public float MaxZ()
+        {
+            return MapSize.Y / 2f * TileSize;
+        }
     }
 }
