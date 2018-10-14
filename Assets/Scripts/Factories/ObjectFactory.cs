@@ -4,6 +4,7 @@
     using Hackle.Objects;
     using Hackle.Objects.Buildings;
     using Hackle.Objects.Units;
+    using System;
     using UnityEngine;
 
     public class ObjectFactory : MonoBehaviour
@@ -11,6 +12,7 @@
         public HudManager HudManager;
 
         public Transform VillageCenterPrefab;
+        public Transform LumberjackPrefab;
         public Transform KnightPrefab;
 
         private Transform mapHolder;
@@ -20,7 +22,20 @@
             mapHolder = RestoreMapholder();
         }
 
-        public VillageCenter CreateVillageCenter()
+        public T CreateBuilding<T>(ObjectType type)
+        {
+            switch (type)
+            {
+                case ObjectType.VillageCenter:
+                    return (T) CreateVillageCenter();
+                case ObjectType.Lumberjack:
+                    return (T) CreateLumberjack();
+                default:
+                    throw new InvalidOperationException("The specified type is not a valid building type: " + type);
+            }
+        }
+
+        private ISelectable CreateVillageCenter()
         {
             Transform villageCenter = Instantiate(VillageCenterPrefab, Vector3.zero, Quaternion.identity).transform;
             villageCenter.parent = mapHolder;
@@ -30,6 +45,16 @@
             center.Capacity = 5;
             HudManager.ChangeMaxCapacity(center.Capacity);
             return center;
+        }
+
+        private ISelectable CreateLumberjack()
+        {
+            Transform lumberjackTransform = Instantiate(LumberjackPrefab, Vector3.zero, Quaternion.identity).transform;
+            lumberjackTransform.parent = mapHolder;
+            Lumberjack jack = lumberjackTransform.gameObject.GetComponent<Lumberjack>();
+            jack.Type = ObjectType.Lumberjack;
+            jack.Capacity = 0;
+            return jack;
         }
 
         public Knight CreateKnight()
@@ -42,7 +67,6 @@
             HudManager.ChangeCapacity(knight.CapacityValue);
             return knight;
         }
-
         private Transform RestoreMapholder()
         {
             string holderName = "Generated Objects";

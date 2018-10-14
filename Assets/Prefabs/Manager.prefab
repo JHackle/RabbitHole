@@ -152,5 +152,7 @@ MonoBehaviour:
   HudManager: {fileID: 114341365909872592}
   VillageCenterPrefab: {fileID: 4465161517143852, guid: f5acdf7769d3da34eb5734bd3e119f34,
     type: 2}
+  LumberjackPrefab: {fileID: 4465161517143852, guid: 1f713df177b05f043bf03b81e95c56c1,
+    type: 2}
   KnightPrefab: {fileID: 4694932111807992, guid: 335a5db5883dd1749acd200abfc7a565,
     type: 2}

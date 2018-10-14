@@ -31,7 +31,7 @@
             HumanPlayer.AddObject(knight);
             MapGenerator.GetTileAt(startingPosition).SetUnit(knight);
 
-            VillageCenter center = ObjectFactory.CreateVillageCenter();
+            VillageCenter center = ObjectFactory.CreateBuilding<VillageCenter>(ObjectType.VillageCenter);
             HumanPlayer.AddObject(center);
             MapGenerator.GetTileAt(startingPosition).SetBuilding(center);
 
@@ -54,7 +54,13 @@
 
         internal void ClickMenuItem(GameObject sender)
         {
-            Debug.Log(sender.GetComponent<Hackle.Objects.Object>().Type + " was clicked");
+            ObjectType type = sender.GetComponent<Objects.Object>().Type;
+            Debug.Log(type + " was clicked");
+
+            // add building
+            Lumberjack jack = ObjectFactory.CreateBuilding<Lumberjack>(type);
+            Tile tile = SelectionManager.SelectedUnit<Tile>();
+            tile.SetBuilding(jack);
 
             // clear build menu
             SelectionManager.Deselect();
