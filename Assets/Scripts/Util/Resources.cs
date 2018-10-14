@@ -18,5 +18,9 @@ namespace Hackle.Util
             Gold = g;
         }
 
+        public override string ToString()
+        {
+            return "Wood:" + Wood + " Food:" + Food + " Gold:" + Gold;
+        }
     }
 }
