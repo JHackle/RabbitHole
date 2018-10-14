@@ -60,6 +60,7 @@ MonoBehaviour:
   SelectionManager: {fileID: 114778997444723934}
   HudManager: {fileID: 114341365909872592}
   ObjectFactory: {fileID: 114958997776454188}
+  CameraManager: {fileID: 0}
   HumanPlayer: {fileID: 114224918703756170}
 --- !u!114 &114224918703756170
 MonoBehaviour:

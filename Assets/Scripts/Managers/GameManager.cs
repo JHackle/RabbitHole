@@ -1,5 +1,6 @@
 ﻿namespace Hackle.Managers
 {
+    using Hackle.Camera;
     using Hackle.Factories;
     using Hackle.Map;
     using Hackle.Objects;
@@ -13,7 +14,7 @@
         public SelectionManager SelectionManager;
         public HudManager HudManager;
         public ObjectFactory ObjectFactory;
-
+        public CameraZoom CameraManager;
         public PlayerManager HumanPlayer;
 
         void Start()
@@ -34,6 +35,9 @@
             VillageCenter center = ObjectFactory.CreateVillageCenter();
             HumanPlayer.AddObject(center);
             MapGenerator.GetTileAt(startingPosition).SetBuilding(center);
+
+            // move camera to village center
+            CameraManager.MoveCameraTo(center.transform.position);
         }
 
         public void NextRound()

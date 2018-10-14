@@ -9,8 +9,8 @@
         private static readonly float ZoomSpeedTouch = .05f;
         private static readonly float ZoomSpeedMouse = 20f;
 
-        private static float[] BoundsX;
-        private static float[] BoundsZ;
+        private static float[] BoundsX = new float[] { Util.Constants.MapSettings.MinX(), Util.Constants.MapSettings.MaxX() };
+        private static float[] BoundsZ = new float[] { Util.Constants.MapSettings.MinZ() - 7f, Util.Constants.MapSettings.MaxZ() - 10f };
         private static readonly float[] ZoomBounds = new float[] { 10f, 50f };
 
         private Camera cam;
@@ -49,6 +49,14 @@
             {
                 HandleMouse();
             }
+        }
+
+        public void MoveCameraTo(Vector3 target)
+        {
+            // calculate the correct target position first
+            // this depends on how the camera is rotated, y position will never be changed
+            Vector3 correctTarget = new Vector3(target.x, cam.transform.position.y, target.z - 10f);
+            cam.transform.position = (correctTarget);
         }
 
         void HandleTouch()
