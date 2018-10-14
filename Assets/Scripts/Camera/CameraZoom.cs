@@ -1,6 +1,7 @@
 ﻿namespace Hackle.Camera
 {
     using UnityEngine;
+    using UnityEngine.EventSystems;
 
     public class CameraZoom : MonoBehaviour
     {
@@ -29,6 +30,12 @@
 
         void Update()
         {
+            // if we hover over an UI element we don't need raycasts
+            if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject != null)
+            {
+                return;
+            }
+
             Debug.DrawLine(new Vector3(BoundsX[0], 0, BoundsZ[0]), new Vector3(BoundsX[0], 0, BoundsZ[1]), Color.red);
             Debug.DrawLine(new Vector3(BoundsX[0], 0, BoundsZ[1]), new Vector3(BoundsX[1], 0, BoundsZ[1]), Color.red);
             Debug.DrawLine(new Vector3(BoundsX[1], 0, BoundsZ[1]), new Vector3(BoundsX[1], 0, BoundsZ[0]), Color.red);
@@ -67,11 +74,6 @@
                     break;
 
                 case 2: // Zooming
-                    // if we hover over an UI element we don't need raycasts
-                    if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-                    {
-                        return;
-                    }
                     Vector2[] newPositions = new Vector2[] { Input.GetTouch(0).position, Input.GetTouch(1).position };
                     if (!wasZoomingLastFrame)
                     {
@@ -108,11 +110,6 @@
             }
             else if (Input.GetMouseButton(0))
             {
-                // if we hover over an UI element we don't need raycasts
-                if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
-                {
-                    return;
-                }
                 PanCamera(Input.mousePosition);
             }
 

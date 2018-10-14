@@ -1,6 +1,7 @@
 ﻿namespace Hackle.Managers
 {
     using UnityEngine;
+    using UnityEngine.EventSystems;
     using UnityEngine.SceneManagement;
 
     public class InputManager : MonoBehaviour
@@ -18,7 +19,7 @@
                 if (Input.GetMouseButtonDown(0))
                 {
                     // if we hover over an UI element we don't need raycasts
-                    if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+                    if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject != null)
                     {
                         return;
                     }
