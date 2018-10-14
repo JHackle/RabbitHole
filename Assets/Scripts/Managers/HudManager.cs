@@ -1,9 +1,8 @@
 ﻿namespace Hackle.Managers
 {
-    using System;
     using Hackle.Factories;
-    using Hackle.Map;
     using Hackle.Objects;
+    using System;
     using UnityEngine;
     using UnityEngine.UI;
 
@@ -58,15 +57,26 @@
             nextRoundArrow.color = defaultColor;
         }
 
+        /// <summary>
+        /// Automatically updates the build menu depending on the game state.
+        /// </summary>
+        internal void UpdateBuildMenu()
+        {
+            ClearBuildMenu();
+
+            if (SelectionManager.IsUnitSelected())
+            {
+                // add updated content to the build menu
+                ISelectable selected = SelectionManager.SelectedUnit<ISelectable>();
+                menuTitle.text = selected.Type.ToString();
+                MenuItemFactory.CreateMenuItems();
+            }
+        }
+
         internal void ChangeMaxCapacity(int cap)
         {
             maxCapacity += cap;
             UpdateCapacity();
-        }
-
-        private void UpdateCapacity()
-        {
-            capacityCount.text = maxCapacity + "/" + capacity;
         }
 
         internal void ChangeCapacity(int cap)
@@ -105,34 +115,6 @@
             goldCount.text = gold + "";
         }
 
-
-        /// <summary>
-        /// Automatically updates the build menu depending on the game state.
-        /// </summary>
-        public void UpdateBuildMenu()
-        {
-            ClearBuildMenu();
-
-            if (SelectionManager.IsUnitSelected())
-            {
-                // add updated content to the build menu
-                ISelectable selected = SelectionManager.SelectedUnit<ISelectable>();
-                menuTitle.text = selected.Type.ToString();
-                MenuItemFactory.CreateMenuItems();
-            }
-        }
-
-        private void ClearBuildMenu()
-        {
-            // remove text from build menu
-            menuTitle.text = "";
-            // destroy all menu elements first
-            foreach (Transform child in buildMenuContent)
-            {
-                GameObject.Destroy(child.gameObject);
-            }
-        }
-
         internal void GoToNextRound()
         {
             // reset arrow color
@@ -145,6 +127,22 @@
         internal void ShowRoundFinish()
         {
             nextRoundArrow.color = highlightColor;
+        }
+
+        private void UpdateCapacity()
+        {
+            capacityCount.text = maxCapacity + "/" + capacity;
+        }
+
+        private void ClearBuildMenu()
+        {
+            // remove text from build menu
+            menuTitle.text = "";
+            // destroy all menu elements
+            foreach (Transform child in buildMenuContent)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
         }
     }
 }
