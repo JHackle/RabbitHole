@@ -31,6 +31,8 @@
         private Text foodCount;
         private Text goldCount;
         private Text capacityCount;
+
+        private Text menuTitle;
         private Transform buildMenuContent;
 
         private int maxCapacity = 0;
@@ -47,6 +49,7 @@
             foodCount = Food.Find("Text").GetComponent<Text>();
             goldCount = Gold.Find("Text").GetComponent<Text>();
             capacityCount = Capacity.Find("Text").GetComponent<Text>();
+            menuTitle = BuildMenu.transform.Find("Text").gameObject.GetComponent<Text>();
             buildMenuContent = BuildMenu.Find("ScrollView").Find("Viewport").Find("Content");
 
             // define colors
@@ -108,35 +111,26 @@
         /// </summary>
         public void UpdateBuildMenu()
         {
-            bool showMenu = SelectionManager.IsUnitSelected();
-            if (showMenu)
+            ClearBuildMenu();
+
+            if (SelectionManager.IsUnitSelected())
             {
-                CreateBuildMenu();
+                // add updated content to the build menu
+                ISelectable selected = SelectionManager.SelectedUnit<ISelectable>();
+                menuTitle.text = selected.Type.ToString();
+                MenuItemFactory.CreateMenuItems(selected);
             }
-            ShowMenu(showMenu);
         }
 
-        private void CreateBuildMenu()
+        private void ClearBuildMenu()
         {
-            ISelectable selected = SelectionManager.SelectedUnit<ISelectable>();
-
-            // write the type of selected unit to the menu
-            Text menuTitle = BuildMenu.transform.Find("Text").gameObject.GetComponent<Text>();
-            menuTitle.text = selected.Type.ToString();
-
+            // remove text from build menu
+            menuTitle.text = "";
             // destroy all menu elements first
             foreach (Transform child in buildMenuContent)
             {
                 GameObject.Destroy(child.gameObject);
             }
-
-            MenuItemFactory.CreateMenuItems(selected);
-        }
-
-        public void ShowMenu(bool show)
-        {
-            BuildMenu.gameObject.SetActive(show);
-            NextRoundButton.gameObject.SetActive(!show);
         }
 
         internal void GoToNextRound()
