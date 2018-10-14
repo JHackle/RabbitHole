@@ -118,7 +118,7 @@
                 // add updated content to the build menu
                 ISelectable selected = SelectionManager.SelectedUnit<ISelectable>();
                 menuTitle.text = selected.Type.ToString();
-                MenuItemFactory.CreateMenuItems(selected);
+                MenuItemFactory.CreateMenuItems();
             }
         }
 

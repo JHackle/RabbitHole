@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68247547fd7faa244aafb10a44180541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SelectionManager: {fileID: 114778997444723934}
   BuildMenuContent: {fileID: 0}
   MenuItem: {fileID: 1981003295627750, guid: 11edfe4b14e797546baf53a0fcfbf731, type: 2}
   Lumberjack: {fileID: 21300000, guid: 03d2ed436b179e642a02399b2f28b4cb, type: 3}
