@@ -61,6 +61,7 @@
             Lumberjack jack = ObjectFactory.CreateBuilding<Lumberjack>(type);
             Tile tile = SelectionManager.SelectedUnit<Tile>();
             tile.SetBuilding(jack);
+            HumanPlayer.AddObject(jack);
 
             // clear build menu
             SelectionManager.Deselect();

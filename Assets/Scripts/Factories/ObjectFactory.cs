@@ -53,6 +53,7 @@
             lumberjackTransform.parent = mapHolder;
             Lumberjack jack = lumberjackTransform.gameObject.GetComponent<Lumberjack>();
             jack.Type = ObjectType.Lumberjack;
+            jack.ResourcesPerTurn = new Util.Resources(5, 0, 0);
             jack.Capacity = 0;
             return jack;
         }
