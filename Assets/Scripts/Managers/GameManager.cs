@@ -39,7 +39,7 @@
             CameraManager.MoveCameraTo(center.transform.position);
         }
 
-        public void NextRound()
+        internal void NextRound()
         {
             SelectionManager.Deselect();
 
@@ -52,7 +52,7 @@
             HudManager.GoToNextRound();
         }
 
-        public void Click(GameObject go)
+        internal void Click(GameObject go)
         {
             IObject clickedObject = go.GetComponent<IObject>();
             
