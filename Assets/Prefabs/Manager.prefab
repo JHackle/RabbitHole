@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68247547fd7faa244aafb10a44180541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameManager: {fileID: 114209358418177876}
   SelectionManager: {fileID: 114778997444723934}
   BuildMenuContent: {fileID: 0}
   MenuItem: {fileID: 1981003295627750, guid: 11edfe4b14e797546baf53a0fcfbf731, type: 2}

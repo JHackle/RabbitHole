@@ -14,5 +14,8 @@
 
         // buildings
         VillageCenter,
+        Farm,
+        GoldMine,
+        Lumberjack,
     }
 }

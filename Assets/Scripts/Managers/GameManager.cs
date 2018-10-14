@@ -52,6 +52,15 @@
             HudManager.GoToNextRound();
         }
 
+        internal void ClickMenuItem(GameObject sender)
+        {
+            Debug.Log(sender.GetComponent<Hackle.Objects.Object>().Type + " was clicked");
+
+            // clear build menu
+            SelectionManager.Deselect();
+            HudManager.UpdateBuildMenu();
+        }
+
         internal void Click(GameObject go)
         {
             IObject clickedObject = go.GetComponent<IObject>();
