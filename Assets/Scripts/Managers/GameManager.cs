@@ -64,17 +64,22 @@
         internal void Click(GameObject go)
         {
             IObject clickedObject = go.GetComponent<IObject>();
-            
-            if (clickedObject is Tile)
+
+            // if a unit was selected before and a tile is clicked we have to handle movements
+            if (SelectionManager.IsSelectedUnitOfType<IMovable>() && clickedObject is Tile)
             {
-                HandleClickOnTile(clickedObject as Tile);
+                DoMovementIfPossible(clickedObject);
+                // remove the selection
+                SelectionManager.Deselect();
             }
+            // if nothing was selected before, or we don't click on a tile
             else 
             {
-                // if the clicked object is not a tile, just select the clicked object and update the build menu
+                // just select the clicked object
                 SelectionManager.Select(clickedObject as ISelectable);
-                HudManager.UpdateBuildMenu();
             }
+            // show selection changes in the build menu
+            HudManager.UpdateBuildMenu();
 
             // indicate that no unit can move any more
             if (!HumanPlayer.CanAnyUnitMove())
@@ -83,26 +88,14 @@
             }
         }
 
-        private void HandleClickOnTile(Tile tile)
+        private void DoMovementIfPossible(IObject clickedObject)
         {
-            // was a unit selected before?
-            if (SelectionManager.IsSelectedUnitOfType<IMovable>())
+            Tile tile = clickedObject as Tile;
+            // is the clicked tile empty and in range of selected unit?
+            if (tile.IsSelected() && !tile.HasUnit())
             {
-                // is the clicked tile empty and in range of selected unit?
-                if (tile.IsSelected() && !tile.HasUnit())
-                {
-                    // just move the unit to the clicked tile
-                    SelectionManager.SelectedUnit<IMovable>().Move(tile);
-                }
-                // remove the selection and hide build menu
-                SelectionManager.Deselect();
-                HudManager.UpdateBuildMenu();
-            }
-            else
-            {
-                // in any other case the clicked tile should be selected and the build menu updated
-                SelectionManager.Select(tile as ISelectable);
-                HudManager.UpdateBuildMenu();
+                // just move the unit to the clicked tile
+                SelectionManager.SelectedUnit<IMovable>().Move(tile);
             }
         }
     }
