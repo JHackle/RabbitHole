@@ -49,7 +49,9 @@
                 if (Vector3.Distance(transform.position, target) < 0.001f)
                 {
                     move = false;
+                    Tile.RemoveUnit();
                     Tile = targetTile;
+                    Tile.SetUnit(this);
                 }
             }
         }

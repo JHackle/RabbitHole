@@ -35,8 +35,8 @@
         public void SetUnit(MovableObject unit)
         {
             // actually set the position of the unit
-            unit.transform.Translate(TileUtil.CoordToPosition(Position));
-            // set a link to this tile in the building
+            unit.transform.position = TileUtil.CoordToPosition(Position);
+            // set a link to this tile in the unit
             unit.Tile = this;
             // store the building on this tile
             this.unit = unit;
