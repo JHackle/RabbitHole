@@ -1,6 +1,5 @@
 ﻿namespace Hackle.Managers
 {
-    using Hackle.Camera;
     using Hackle.Factories;
     using Hackle.Map;
     using Hackle.Objects;
@@ -14,7 +13,7 @@
         public SelectionManager SelectionManager;
         public HudManager HudManager;
         public ObjectFactory ObjectFactory;
-        public CameraZoom CameraManager;
+        public CameraManager CameraManager;
         public PlayerManager HumanPlayer;
 
         void Start()

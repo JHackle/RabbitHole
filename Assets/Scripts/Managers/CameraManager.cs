@@ -1,9 +1,9 @@
-﻿namespace Hackle.Camera
+﻿namespace Hackle.Managers
 {
     using UnityEngine;
     using UnityEngine.EventSystems;
 
-    public class CameraZoom : MonoBehaviour
+    public class CameraManager : MonoBehaviour
     {
         private static readonly float PanSpeed = 10f;
         private static readonly float ZoomSpeedTouch = .05f;
