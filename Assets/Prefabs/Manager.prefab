@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114341365909872592}
   - component: {fileID: 114958997776454188}
   - component: {fileID: 114224918703756170}
+  - component: {fileID: 114632668856035662}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -86,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectionManager: {fileID: 114778997444723934}
+  MenuItemFactory: {fileID: 114632668856035662}
   MenuButton: {fileID: 0}
   Capacity: {fileID: 0}
   Wood: {fileID: 0}
@@ -94,9 +96,22 @@ MonoBehaviour:
   Round: {fileID: 0}
   NextRoundButton: {fileID: 0}
   BuildMenu: {fileID: 0}
+--- !u!114 &114632668856035662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1027977995370488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68247547fd7faa244aafb10a44180541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuildMenuContent: {fileID: 0}
   MenuItem: {fileID: 1981003295627750, guid: 11edfe4b14e797546baf53a0fcfbf731, type: 2}
-  Lumberjack: {fileID: 21300000, guid: 4796c4a2dc483964a94381dc13df8b73, type: 3}
-  GoldMine: {fileID: 21300000, guid: c29728fa69c861f46beeb11b4b3b0669, type: 3}
+  Lumberjack: {fileID: 21300000, guid: 03d2ed436b179e642a02399b2f28b4cb, type: 3}
+  GoldMine: {fileID: 21300000, guid: d278ac53d7452384bae430107dd450ec, type: 3}
+  Farm: {fileID: 21300000, guid: 43a683ed1822d1c478bd266daa1e9185, type: 3}
 --- !u!114 &114778997444723934
 MonoBehaviour:
   m_ObjectHideFlags: 1

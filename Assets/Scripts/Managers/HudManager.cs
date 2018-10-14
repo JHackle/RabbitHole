@@ -1,6 +1,8 @@
 ﻿namespace Hackle.Managers
 {
     using System;
+    using Hackle.Factories;
+    using Hackle.Map;
     using Hackle.Objects;
     using UnityEngine;
     using UnityEngine.UI;
@@ -11,6 +13,7 @@
     public class HudManager : MonoBehaviour
     {
         public SelectionManager SelectionManager;
+        public MenuItemFactory MenuItemFactory;
 
         public Transform MenuButton;
         public Transform Capacity;
@@ -22,17 +25,13 @@
         public Transform NextRoundButton;
         public Transform BuildMenu;
 
-        public GameObject MenuItem;
-
-        public Sprite Lumberjack;
-        public Sprite GoldMine;
-
         private Text nextRoundNumber;
         private Image nextRoundArrow;
         private Text woodCount;
         private Text foodCount;
         private Text goldCount;
         private Text capacityCount;
+        private Transform buildMenuContent;
 
         private int maxCapacity = 0;
         private int capacity = 0;
@@ -48,6 +47,7 @@
             foodCount = Food.Find("Text").GetComponent<Text>();
             goldCount = Gold.Find("Text").GetComponent<Text>();
             capacityCount = Capacity.Find("Text").GetComponent<Text>();
+            buildMenuContent = BuildMenu.Find("ScrollView").Find("Viewport").Find("Content");
 
             // define colors
             ColorUtility.TryParseHtmlString("#1EFF00FF", out highlightColor);
@@ -125,81 +125,12 @@
             menuTitle.text = selected.Type.ToString();
 
             // destroy all menu elements first
-            Transform content = BuildMenu.Find("ScrollView").Find("Viewport").Find("Content");
-            foreach (Transform child in content)
+            foreach (Transform child in buildMenuContent)
             {
                 GameObject.Destroy(child.gameObject);
             }
 
-            GameObject item;
-            switch (selected.Type)
-            {
-                case ObjectType.GrassTile:
-                    break;
-                case ObjectType.DesertTile:
-                    break;
-                case ObjectType.MountainTile:
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = GoldMine;
-                    item.transform.SetParent(content.transform, false);
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    break;
-                case ObjectType.WaterTile:
-                    break;
-                case ObjectType.ForestTile:
-                    item = Instantiate(MenuItem);
-                    item.transform.Find("Image").GetComponent<Image>().sprite = Lumberjack;
-                    item.transform.SetParent(content.transform, false);
-                    break;
-                case ObjectType.Knight:
-                    break;
-                case ObjectType.VillageCenter:
-                    break;
-            }
+            MenuItemFactory.CreateMenuItems(selected);
         }
 
         public void ShowMenu(bool show)
