@@ -50,8 +50,7 @@
                 {
                     move = false;
                     Tile.RemoveUnit();
-                    Tile = targetTile;
-                    Tile.SetUnit(this);
+                    targetTile.SetUnit(this);
                 }
             }
         }
