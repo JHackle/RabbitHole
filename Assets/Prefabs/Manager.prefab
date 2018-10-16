@@ -150,9 +150,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HudManager: {fileID: 114341365909872592}
-  VillageCenterPrefab: {fileID: 4465161517143852, guid: f5acdf7769d3da34eb5734bd3e119f34,
+  VillageCenterPrefab: {fileID: 4465161517143852, guid: 3d8f3c430dd38bd48b5dec2ba0ceae8f,
     type: 2}
-  LumberjackPrefab: {fileID: 4465161517143852, guid: 1f713df177b05f043bf03b81e95c56c1,
+  LumberjackPrefab: {fileID: 4465161517143852, guid: c4d87310470575f4cae87e94b1a2c985,
+    type: 2}
+  FarmPrefab: {fileID: 4465161517143852, guid: 801237d29cb881d4899a417875ed2733, type: 2}
+  GoldMinePrefab: {fileID: 4465161517143852, guid: 0c608c6af84fa804d9ff7b2234591e07,
     type: 2}
   KnightPrefab: {fileID: 4694932111807992, guid: 335a5db5883dd1749acd200abfc7a565,
     type: 2}
