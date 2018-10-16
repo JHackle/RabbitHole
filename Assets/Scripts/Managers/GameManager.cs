@@ -57,6 +57,12 @@
             ObjectType type = sender.GetComponent<Objects.Object>().Type;
             Debug.Log(type + " was clicked");
 
+            if (!HumanPlayer.Buy(type))
+            {
+                Debug.Log("Not enough resources! (" + PriceDictionary.GetPrice(type) + ")");
+                return;
+            }
+
             // add building
             Building building = ObjectFactory.CreateBuilding(type);
             Tile tile = SelectionManager.SelectedUnit<Tile>();

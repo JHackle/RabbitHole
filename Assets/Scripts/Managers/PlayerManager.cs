@@ -1,5 +1,6 @@
 ﻿namespace Hackle.Managers
 {
+    using Hackle.Factories;
     using Hackle.Objects;
     using System;
     using System.Collections.Generic;
@@ -38,6 +39,21 @@
                 Food += building.ResourcesPerTurn.Food;
                 Gold += building.ResourcesPerTurn.Gold;
             }
+        }
+
+        internal bool Buy(ObjectType type)
+        {
+            Util.Resources res = PriceDictionary.GetPrice(type);
+            if ((Wood < res.Wood) || (Food < res.Food) || (Gold < res.Gold))
+            {
+                return false;
+            }
+
+            Wood -= res.Wood;
+            Food -= res.Food;
+            Gold -= res.Gold;
+
+            return true;
         }
 
         private List<Building> Buildings()
