@@ -5,6 +5,8 @@
     using Hackle.Objects;
     using Hackle.Objects.Buildings;
     using Hackle.Objects.Units;
+    using System.Collections;
+    using System.Threading;
     using UnityEngine;
 
     public class GameManager : MonoBehaviour
@@ -59,7 +61,7 @@
 
             if (!HumanPlayer.Buy(type))
             {
-                Debug.Log("Not enough resources! (" + PriceDictionary.GetPrice(type) + ")");
+                HudManager.Debug("Not enough resources! Requires: " + PriceDictionary.GetPrice(type));
                 return;
             }
 

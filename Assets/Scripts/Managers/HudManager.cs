@@ -33,6 +33,7 @@
 
         private Text menuTitle;
         private Transform buildMenuContent;
+        private Text debug;
 
         private int maxCapacity = 0;
         private int capacity = 0;
@@ -49,12 +50,19 @@
             goldCount = Gold.Find("Text").GetComponent<Text>();
             capacityCount = Capacity.Find("Text").GetComponent<Text>();
             menuTitle = BuildMenu.transform.Find("Text").gameObject.GetComponent<Text>();
+            debug = BuildMenu.Find("Debug").GetComponent<Text>();
             buildMenuContent = BuildMenu.Find("ScrollView").Find("Viewport").Find("Content");
 
             // define colors
             ColorUtility.TryParseHtmlString("#1EFF00FF", out highlightColor);
             ColorUtility.TryParseHtmlString("#FED26CFF", out defaultColor);
             nextRoundArrow.color = defaultColor;
+        }
+
+        internal void Debug(string text)
+        {
+            debug.gameObject.SetActive(text != null);
+            debug.text = text;
         }
 
         /// <summary>
@@ -136,6 +144,7 @@
 
         private void ClearBuildMenu()
         {
+            Debug(null);
             // remove text from build menu
             menuTitle.text = "";
             // destroy all menu elements
