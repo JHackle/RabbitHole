@@ -24,66 +24,66 @@
             mapHolder = RestoreMapholder();
         }
 
-        public Transform CreateBuilding(ObjectType type)
+        public Building CreateBuilding(ObjectType type)
+        {
+            Transform transform = Instantiate(GetPrefab(type), Vector3.zero, Quaternion.identity).transform;
+            transform.parent = mapHolder;
+            Building building = transform.gameObject.GetComponent<Building>();
+            building.Type = type;
+            building.ResourcesPerTurn = GetResources(type);
+            building.Capacity = GetCapacity(type);
+            HudManager.ChangeCapacity(building.Capacity);
+            return building;
+        }
+
+        private Util.Resources GetResources(ObjectType type)
         {
             switch (type)
             {
                 case ObjectType.VillageCenter:
-                    return CreateVillageCenter();
-                case ObjectType.Lumberjack:
-                    return CreateLumberjack();
+                    return new Util.Resources(0, 0, 1);
                 case ObjectType.Farm:
-                    return CreateFarm();
+                    return new Util.Resources(0, 1, 0);
                 case ObjectType.GoldMine:
-                    return CreateGoldMine();
+                    return new Util.Resources(0, 0, 2);
+                case ObjectType.Lumberjack:
+                    return new Util.Resources(3, 0, 0);
                 default:
-                    throw new InvalidOperationException("The specified type is not a valid building type: " + type);
+                    throw new InvalidOperationException("There are no resource for this object type: " + type);
             }
         }
 
-        private Transform CreateVillageCenter()
+        private int GetCapacity(ObjectType type)
         {
-            Transform villageCenter = Instantiate(VillageCenterPrefab, Vector3.zero, Quaternion.identity).transform;
-            villageCenter.parent = mapHolder;
-            VillageCenter center = villageCenter.gameObject.GetComponent<VillageCenter>();
-            center.Type = ObjectType.VillageCenter;
-            center.ResourcesPerTurn = new Util.Resources(0, 0, 1);
-            center.Capacity = 5;
-            HudManager.ChangeMaxCapacity(center.Capacity);
-            return villageCenter;
+            switch (type)
+            {
+                case ObjectType.VillageCenter:
+                    return 5;
+                case ObjectType.Farm:
+                case ObjectType.GoldMine:
+                case ObjectType.Lumberjack:
+                    return 0;
+                default:
+                    throw new InvalidOperationException("There are no resource for this object type: " + type);
+            }
         }
 
-        private Transform CreateLumberjack()
-        {
-            Transform lumberjackTransform = Instantiate(LumberjackPrefab, Vector3.zero, Quaternion.identity).transform;
-            lumberjackTransform.parent = mapHolder;
-            Lumberjack jack = lumberjackTransform.gameObject.GetComponent<Lumberjack>();
-            jack.Type = ObjectType.Lumberjack;
-            jack.ResourcesPerTurn = new Util.Resources(5, 0, 0);
-            jack.Capacity = 0;
-            return lumberjackTransform;
-        }
 
-        private Transform CreateFarm()
+        private Transform GetPrefab(ObjectType type)
         {
-            Transform farmTransform = Instantiate(FarmPrefab, Vector3.zero, Quaternion.identity).transform;
-            farmTransform.parent = mapHolder;
-            Farm farm = farmTransform.gameObject.GetComponent<Farm>();
-            farm.Type = ObjectType.Farm;
-            farm.ResourcesPerTurn = new Util.Resources(0, 5, 0);
-            farm.Capacity = 0;
-            return farmTransform;
-        }
-
-        private Transform CreateGoldMine()
-        {
-            Transform goldTransform = Instantiate(GoldMinePrefab, Vector3.zero, Quaternion.identity).transform;
-            goldTransform.parent = mapHolder;
-            GoldMine gold = goldTransform.gameObject.GetComponent<GoldMine>();
-            gold.Type = ObjectType.Farm;
-            gold.ResourcesPerTurn = new Util.Resources(0, 0, 3);
-            gold.Capacity = 0;
-            return goldTransform;
+            switch (type)
+            {
+                case ObjectType.VillageCenter:
+                    return VillageCenterPrefab;
+                case ObjectType.Farm:
+                    return FarmPrefab;
+                case ObjectType.GoldMine:
+                    return GoldMinePrefab;
+                case ObjectType.Lumberjack:
+                    return LumberjackPrefab;
+                default:
+                    throw new InvalidOperationException("There is no prefab for the given object type: " + type);
+            }
         }
 
         public Knight CreateKnight()

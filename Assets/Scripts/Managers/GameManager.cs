@@ -31,9 +31,9 @@
             HumanPlayer.AddObject(knight);
             MapGenerator.GetTileAt(startingPosition).SetUnit(knight);
 
-            Transform center = ObjectFactory.CreateBuilding(ObjectType.VillageCenter);
-            HumanPlayer.AddObject(center.GetComponent<SelectableObject>());
-            MapGenerator.GetTileAt(startingPosition).SetBuilding(center.GetComponent<Building>());
+            Building center = ObjectFactory.CreateBuilding(ObjectType.VillageCenter);
+            HumanPlayer.AddObject(center);
+            MapGenerator.GetTileAt(startingPosition).SetBuilding(center);
 
             // move camera to village center
             CameraManager.MoveCameraTo(center.transform.position);
@@ -58,10 +58,10 @@
             Debug.Log(type + " was clicked");
 
             // add building
-            Transform jack = ObjectFactory.CreateBuilding(type);
+            Building building = ObjectFactory.CreateBuilding(type);
             Tile tile = SelectionManager.SelectedUnit<Tile>();
-            tile.SetBuilding(jack.GetComponent<SelectableObject>());
-            HumanPlayer.AddObject(jack.GetComponent<IObject>());
+            tile.SetBuilding(building);
+            HumanPlayer.AddObject(building);
 
             // clear build menu
             SelectionManager.Deselect();
