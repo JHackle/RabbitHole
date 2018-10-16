@@ -23,7 +23,7 @@
             MapGenerator.GenerateMap();
 
             // set starting resources
-            HumanPlayer.Wood = 20;
+            HumanPlayer.Wood = 100;
             HumanPlayer.Food = 0;
             HumanPlayer.Gold = 0;
 
